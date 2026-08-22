@@ -1,0 +1,87 @@
+name: Install contribute evidence forms
+
+on:
+  push:
+    paths:
+      - '.github/workflows/install-contribute-forms.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add evidence forms to archive pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          form_action = 'https://formsubmit.co/zbirohstation@gmail.com'
+
+          copy = {
+            'en': {
+              'title':'Contribute evidence',
+              'intro':'Have a document, photograph, correction, archival reference, source link or historical lead? Send it directly to the Stanice Zbiroh Historical Research Archive. You may submit without providing your name or email address. Please include sources wherever possible.',
+              'name':'Name (optional)', 'email':'Email (optional)', 'message':'Information, source or historical lead', 'send':'Send evidence',
+              'privacy':'Name and email are optional. Submissions are processed by FormSubmit and forwarded to the archive email account; therefore the archive does not promise complete technical anonymity.'
+            },
+            'cs': {
+              'title':'Přispějte důkazy',
+              'intro':'Máte dokument, fotografii, opravu, archivní odkaz, zdroj nebo historickou stopu? Pošlete ji přímo do Historického výzkumného archivu Stanice Zbiroh. Jméno ani e-mail uvádět nemusíte. Pokud je to možné, uveďte prosím zdroje.',
+              'name':'Jméno (nepovinné)', 'email':'E-mail (nepovinný)', 'message':'Informace, zdroj nebo historická stopa', 'send':'Odeslat důkaz',
+              'privacy':'Jméno a e-mail jsou nepovinné. Podání zpracovává služba FormSubmit a přeposílá je na e-mail archivu; archiv proto neslibuje úplnou technickou anonymitu.'
+            },
+            'de': {
+              'title':'Belege beitragen',
+              'intro':'Haben Sie ein Dokument, Foto, eine Korrektur, Archivangabe, Quellenangabe oder historische Spur? Senden Sie sie direkt an das Historische Forschungsarchiv Stanice Zbiroh. Name und E-Mail-Adresse können leer bleiben. Bitte nennen Sie nach Möglichkeit Quellen.',
+              'name':'Name (optional)', 'email':'E-Mail (optional)', 'message':'Information, Quelle oder historische Spur', 'send':'Beleg senden',
+              'privacy':'Name und E-Mail sind optional. Einsendungen werden von FormSubmit verarbeitet und an das Archiv-E-Mail-Konto weitergeleitet; daher verspricht das Archiv keine vollständige technische Anonymität.'
+            }
+          }
+
+          style = '''\n<style id="evidence-form-style">.evidence-form{display:grid;gap:12px;margin-top:18px}.evidence-form label{font:600 13px system-ui,sans-serif;color:var(--ink)}.evidence-form input,.evidence-form textarea{width:100%;margin-top:5px;padding:11px 12px;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--ink);font:16px/1.4 system-ui,sans-serif}.evidence-form textarea{min-height:150px;resize:vertical}.evidence-form .send-evidence{justify-self:start;background:var(--accent);color:#fff;border:0;padding:11px 18px;border-radius:3px;font:700 14px system-ui,sans-serif;cursor:pointer}.evidence-form .privacy-note{font-size:13px;color:var(--muted);margin:0}.evidence-form .hp{position:absolute;left:-9999px}</style>'''
+
+          def make_form(lang):
+            c=copy[lang]
+            return f'''<section class="contribute"><h2>{c['title']}</h2><p>{c['intro']}</p><form class="evidence-form" action="{form_action}" method="POST"><input type="hidden" name="_subject" value="New evidence submission — Stanice Zbiroh Archive"><input type="hidden" name="_template" value="table"><input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off"><label>{c['name']}<input type="text" name="name" autocomplete="name"></label><label>{c['email']}<input type="email" name="email" autocomplete="email"></label><label>{c['message']}<textarea name="message" required></textarea></label><button class="send-evidence" type="submit">{c['send']}</button><p class="privacy-note">{c['privacy']}</p></form></section>'''
+
+          changed=[]
+          for path in Path('.').glob('*.html'):
+            text=path.read_text(encoding='utf-8')
+            if 'class="contribute"' not in text:
+              continue
+            if 'evidence-form-style' not in text:
+              text=text.replace('</head>', style+'\n</head>', 1)
+            # Replace contribute section according to enclosing language block.
+            for lang in ('en','cs','de'):
+              marker=f'data-lang="{lang}"'
+              start=0
+              while True:
+                pos=text.find(marker,start)
+                if pos<0: break
+                next_positions=[p for l in ('en','cs','de') if (p:=text.find(f'data-lang="{l}"',pos+len(marker)))>=0]
+                end=min(next_positions) if next_positions else len(text)
+                chunk=text[pos:end]
+                chunk2=re.sub(r'<section class="contribute">.*?</section>', make_form(lang), chunk, count=1, flags=re.S)
+                text=text[:pos]+chunk2+text[end:]
+                start=pos+len(chunk2)
+                break
+            path.write_text(text,encoding='utf-8')
+            changed.append(str(path))
+          print('Updated:', ', '.join(changed))
+          PY
+      - name: Commit forms
+        run: |
+          if git diff --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add '*.html'
+          git commit -m "Add evidence submission forms to archive pages"
+          git push
