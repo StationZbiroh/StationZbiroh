@@ -9,6 +9,11 @@
   <style>
     :root{--ink:#17202a;--muted:#5e6a73;--line:#d7dde2;--paper:#fbfbf8;--accent:#7a1f1f;--soft:#f1f2ee;--max:960px}
     *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.65}
+    .entitybar{background:#eceeec;border-bottom:1px solid #d4d8d5;font:600 13px/1.35 system-ui,sans-serif;color:#4e575d}
+    .entitybar-inner{max-width:var(--max);margin:auto;padding:10px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+    .entitybar-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#747c81;margin-right:4px}
+    .entitybar a{color:#39434a;text-decoration:none;border-bottom:1px solid transparent;padding:2px 0}
+    .entitybar a:hover{border-bottom-color:#6e777c}.entitybar a.current{font-weight:800;color:#151c20}
     header,main,footer{max-width:var(--max);margin:auto;padding-left:24px;padding-right:24px}
     header{padding-top:54px;padding-bottom:28px;border-bottom:1px solid var(--line)}
     .kicker{font:600 12px/1.3 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
@@ -32,10 +37,20 @@
     .note{background:var(--soft);padding:18px 20px;font-size:16px}
     footer{border-top:1px solid var(--line);padding-top:22px;padding-bottom:42px;color:var(--muted);font-size:14px}
     [data-lang]{display:none} [data-lang].active{display:block}
-    @media(max-width:650px){.event{grid-template-columns:1fr;gap:8px}.research-grid{grid-template-columns:1fr}header{padding-top:36px}}
+    @media(max-width:650px){.event{grid-template-columns:1fr;gap:8px}.research-grid{grid-template-columns:1fr}header{padding-top:36px}.entitybar-inner{gap:11px}}
   </style>
 </head>
 <body>
+<div class="entitybar" aria-label="Research entities">
+  <div class="entitybar-inner">
+    <span class="entitybar-label">Research entities</span>
+    <a href="index.html" class="current">Stanice Zbiroh</a>
+    <a href="hotel-borek.html">Hotel Borek</a>
+    <a href="strousberg.html">Bethel Henry Strousberg</a>
+    <a href="research/TIMELINE.md">Borek industry</a>
+    <a href="sources/UPLOAD_BATCH_2026-08-21.md">Sources & documents</a>
+  </div>
+</div>
 <header>
   <div class="kicker">Stanice Zbiroh · Historical Research Archive</div>
   <h1>Timeline of a railway, an industrial landscape, and the people connected to it</h1>
