@@ -1,0 +1,82 @@
+name: One-time navigation refresh
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-time-navigation-refresh.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Standardize navigation and biography
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          pages = {
+              'index.html': 'Archive',
+              'hotel-borek.html': 'Hotel Borek',
+              'strousberg.html': 'Strousberg',
+              'strousberg-memoir-summary.html': 'Memoir Summary',
+              'strousberg-zbirow-report.html': '1875 Report',
+              'factory-catalogue.html': 'Factory Catalogue',
+              'oak-tree.html': 'Oak Tree',
+          }
+
+          def nav_html(current):
+              links=[]
+              for path,label in pages.items():
+                  cls=' class="current"' if path == current else ''
+                  links.append(f'<a{cls} href="{path}">{label}</a>')
+              return '<div class="entitybar"><div class="entitybar-inner"><span class="entitybar-label">Archive pages</span>' + ''.join(links) + '</div></div>'
+
+          nav_css = '.entitybar{background:#eceeec;border-bottom:1px solid #d4d8d5;font:600 13px/1.35 system-ui,sans-serif}.entitybar-inner{max-width:960px;margin:auto;padding:10px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}.entitybar-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#747c81}.entitybar a{color:#39434a;text-decoration:none}.entitybar a.current{font-weight:800;color:#151c20;text-decoration:underline}'
+
+          for path in pages:
+              p=Path(path)
+              if not p.exists():
+                  continue
+              text=p.read_text(encoding='utf-8')
+              nav=nav_html(path)
+              if '<div class="entitybar">' in text:
+                  text=re.sub(r'<div class="entitybar">.*?</div></div>', nav, text, count=1, flags=re.S)
+                  if '.entitybar-inner' not in text.split('</style>',1)[0]:
+                      text=text.replace('</style>', nav_css + '</style>', 1)
+              else:
+                  if '</style>' in text:
+                      text=text.replace('</style>', nav_css + '</style>', 1)
+                  text=text.replace('<body>', '<body>'+nav, 1)
+
+              if path == 'strousberg.html':
+                  old='Bethel Henry Strousberg (1823–1884), born Baruch Hirsch Strausberg, developed railway and industrial enterprises across Europe.'
+                  new='Bethel Henry Strousberg (1823–1884) was born <strong>Bartel Heinrich Strausberg</strong> (Hebrew form: <strong>Baruch Hirsch</strong>) into a Jewish family in East Prussia. After moving to England as a young man, he adopted the name <strong>Bethel Henry Strousberg</strong> and converted to Christianity, joining the <strong>Church of England</strong>. He later developed railway and industrial enterprises across Europe.'
+                  text=text.replace(old,new)
+                  cs='<section><h2>Historický přehled</h2><p>Bethel Henry Strousberg (1823–1884) se narodil jako <strong>Bartel Heinrich Strausberg</strong> (hebrejská podoba jména: <strong>Baruch Hirsch</strong>) do židovské rodiny ve Východním Prusku. Jako mladý muž odešel do Anglie, přijal jméno <strong>Bethel Henry Strousberg</strong> a konvertoval ke křesťanství v rámci <strong>anglikánské církve (Church of England)</strong>.</p><p>Stránka shromažďuje doložitelné údaje o Strousbergově zbirožském systému:'
+                  text=text.replace('<section><h2>Historický přehled</h2><p>Stránka shromažďuje doložitelné údaje o Strousbergově zbirožském systému:',cs)
+                  de='<section><h2>Historisches Inventar</h2><p>Bethel Henry Strousberg (1823–1884) wurde als <strong>Bartel Heinrich Strausberg</strong> (hebräische Namensform: <strong>Baruch Hirsch</strong>) in eine jüdische Familie in Ostpreußen geboren. Als junger Mann ging er nach England, nahm den Namen <strong>Bethel Henry Strousberg</strong> an und trat zum Christentum in der <strong>Church of England</strong> über.</p><p>Diese Seite sammelt nachprüfbare Angaben über Strousbergs Zbirow-System:'
+                  text=text.replace('<section><h2>Historisches Inventar</h2><p>Diese Seite sammelt nachprüfbare Angaben über Strousbergs Zbirow-System:',de)
+
+              if path == 'strousberg-memoir-summary.html':
+                  text=text.replace('after going to England he used Bethel Henry Strousberg, later confirmed following his conversion to Christianity.', 'after going to England he used Bethel Henry Strousberg; at his conversion to Christianity the name was confirmed at baptism, and he joined the Church of England.')
+                  text=text.replace('po odchodu do Anglie používal jméno Bethel Henry Strousberg, které později potvrdil jeho přestup ke křesťanství.', 'po odchodu do Anglie používal jméno Bethel Henry Strousberg; při konverzi ke křesťanství bylo toto jméno potvrzeno křtem a stal se členem anglikánské církve (Church of England).')
+                  text=text.replace('Nach seiner Übersiedlung nach England verwendete er Bethel Henry Strousberg; nach seinem Übertritt zum Christentum blieb dieser Name bestehen.', 'Nach seiner Übersiedlung nach England verwendete er Bethel Henry Strousberg; bei seinem Übertritt zum Christentum wurde dieser Name durch die Taufe bestätigt, und er schloss sich der Church of England an.')
+
+              p.write_text(text,encoding='utf-8')
+      - name: Commit refreshed pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html hotel-borek.html strousberg.html strousberg-memoir-summary.html strousberg-zbirow-report.html factory-catalogue.html oak-tree.html
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Standardize archive navigation and restore Strousberg biography"
+            git push
+          fi
