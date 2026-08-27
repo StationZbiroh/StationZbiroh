@@ -1,0 +1,31 @@
+name: One-time Economist link
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-link-economist.yml'
+permissions:
+  contents: write
+jobs:
+  link:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Link financial collapse to Economist page
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('strousberg.html')
+          s=p.read_text()
+          old='The Moscow Commercial Loan Bank stopped payment. <em>The Economist</em> reported that losses connected with Strousberg were central to the bank\'s failure and described Zbiroh as a large railway-carriage manufactory employing about 5,000 men. It also emphasized Strousberg\'s lack of ready cash and heavily mortgaged assets.'
+          new='The Moscow Commercial Loan Bank stopped payment. <a href="economist-strousberg-1875.html"><em>The Economist</em> reported</a> that losses connected with Strousberg were central to the bank\'s failure and described Zbiroh as a large railway-carriage manufactory employing about 5,000 men. It also emphasized Strousberg\'s lack of ready cash and heavily mortgaged assets. <a href="economist-strousberg-1875.html">Read the contemporary 1875 Economist report and transcription.</a>'
+          if old not in s:
+              raise SystemExit('Target text not found')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Commit link
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add strousberg.html
+          git commit -m 'Link financial collapse to Economist 1875 source' || exit 0
+          git push
