@@ -14,69 +14,115 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Standardize navigation and biography
+      - name: Refresh archive navigation and Brandeis research timeline
         shell: python
         run: |
           from pathlib import Path
           import re
 
-          pages = {
-              'index.html': 'Archive',
-              'hotel-borek.html': 'Hotel Borek',
-              'strousberg.html': 'Strousberg',
-              'strousberg-memoir-summary.html': 'Memoir Summary',
-              'strousberg-zbirow-report.html': '1875 Report',
-              'factory-catalogue.html': 'Factory Catalogue',
-              'oak-tree.html': 'Oak Tree',
-          }
+          core_pages = [
+              ('index.html','Archive'),
+              ('strousberg.html','Strousberg'),
+              ('emil-brandeis.html','Emil Brandeis'),
+              ('strousberg-memoir-summary.html','Memoir Summary'),
+              ('strousberg-zbirow-report.html','1875 Report'),
+              ('factory-catalogue.html','Factory Catalogue'),
+              ('brandeis-eisenschimmel-factory-images.html','Factory Images'),
+              ('hotel-borek.html','Hotel Borek'),
+              ('oak-tree.html','Oak Tree'),
+          ]
 
           def nav_html(current):
               links=[]
-              for path,label in pages.items():
+              for path,label in core_pages:
                   cls=' class="current"' if path == current else ''
                   links.append(f'<a{cls} href="{path}">{label}</a>')
               return '<div class="entitybar"><div class="entitybar-inner"><span class="entitybar-label">Archive pages</span>' + ''.join(links) + '</div></div>'
 
           nav_css = '.entitybar{background:#eceeec;border-bottom:1px solid #d4d8d5;font:600 13px/1.35 system-ui,sans-serif}.entitybar-inner{max-width:960px;margin:auto;padding:10px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}.entitybar-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#747c81}.entitybar a{color:#39434a;text-decoration:none}.entitybar a.current{font-weight:800;color:#151c20;text-decoration:underline}'
 
-          for path in pages:
-              p=Path(path)
-              if not p.exists():
-                  continue
+          # Make Emil Brandeis available beside Strousberg throughout the public archive.
+          for p in Path('.').glob('*.html'):
               text=p.read_text(encoding='utf-8')
-              nav=nav_html(path)
+              nav=nav_html(p.name)
               if '<div class="entitybar">' in text:
                   text=re.sub(r'<div class="entitybar">.*?</div></div>', nav, text, count=1, flags=re.S)
-                  if '.entitybar-inner' not in text.split('</style>',1)[0]:
-                      text=text.replace('</style>', nav_css + '</style>', 1)
               else:
-                  if '</style>' in text:
-                      text=text.replace('</style>', nav_css + '</style>', 1)
                   text=text.replace('<body>', '<body>'+nav, 1)
-
-              if path == 'strousberg.html':
-                  old='Bethel Henry Strousberg (1823–1884), born Baruch Hirsch Strausberg, developed railway and industrial enterprises across Europe.'
-                  new='Bethel Henry Strousberg (1823–1884) was born <strong>Bartel Heinrich Strausberg</strong> (Hebrew form: <strong>Baruch Hirsch</strong>) into a Jewish family in East Prussia. After moving to England as a young man, he adopted the name <strong>Bethel Henry Strousberg</strong> and converted to Christianity, joining the <strong>Church of England</strong>. He later developed railway and industrial enterprises across Europe.'
-                  text=text.replace(old,new)
-                  cs='<section><h2>Historický přehled</h2><p>Bethel Henry Strousberg (1823–1884) se narodil jako <strong>Bartel Heinrich Strausberg</strong> (hebrejská podoba jména: <strong>Baruch Hirsch</strong>) do židovské rodiny ve Východním Prusku. Jako mladý muž odešel do Anglie, přijal jméno <strong>Bethel Henry Strousberg</strong> a konvertoval ke křesťanství v rámci <strong>anglikánské církve (Church of England)</strong>.</p><p>Stránka shromažďuje doložitelné údaje o Strousbergově zbirožském systému:'
-                  text=text.replace('<section><h2>Historický přehled</h2><p>Stránka shromažďuje doložitelné údaje o Strousbergově zbirožském systému:',cs)
-                  de='<section><h2>Historisches Inventar</h2><p>Bethel Henry Strousberg (1823–1884) wurde als <strong>Bartel Heinrich Strausberg</strong> (hebräische Namensform: <strong>Baruch Hirsch</strong>) in eine jüdische Familie in Ostpreußen geboren. Als junger Mann ging er nach England, nahm den Namen <strong>Bethel Henry Strousberg</strong> an und trat zum Christentum in der <strong>Church of England</strong> über.</p><p>Diese Seite sammelt nachprüfbare Angaben über Strousbergs Zbirow-System:'
-                  text=text.replace('<section><h2>Historisches Inventar</h2><p>Diese Seite sammelt nachprüfbare Angaben über Strousbergs Zbirow-System:',de)
-
-              if path == 'strousberg-memoir-summary.html':
-                  text=text.replace('after going to England he used Bethel Henry Strousberg, later confirmed following his conversion to Christianity.', 'after going to England he used Bethel Henry Strousberg; at his conversion to Christianity the name was confirmed at baptism, and he joined the Church of England.')
-                  text=text.replace('po odchodu do Anglie používal jméno Bethel Henry Strousberg, které později potvrdil jeho přestup ke křesťanství.', 'po odchodu do Anglie používal jméno Bethel Henry Strousberg; při konverzi ke křesťanství bylo toto jméno potvrzeno křtem a stal se členem anglikánské církve (Church of England).')
-                  text=text.replace('Nach seiner Übersiedlung nach England verwendete er Bethel Henry Strousberg; nach seinem Übertritt zum Christentum blieb dieser Name bestehen.', 'Nach seiner Übersiedlung nach England verwendete er Bethel Henry Strousberg; bei seinem Übertritt zum Christentum wurde dieser Name durch die Taufe bestätigt, und er schloss sich der Church of England an.')
-
+              head=text.split('</style>',1)[0]
+              if '.entitybar-inner' not in head and '</style>' in text:
+                  text=text.replace('</style>', nav_css + '</style>', 1)
               p.write_text(text,encoding='utf-8')
+
+          # Correct the old homepage conflation of the Borek industrialist with the
+          # Holocaust.cz record.  The linked record is for Emil Brandeis, born 1873,
+          # Prague XI, deported Prague -> Lodz on 31 October 1941.  The Borek identity
+          # is not yet established.
+          p=Path('index.html')
+          text=p.read_text(encoding='utf-8')
+          victim_url='https://www.holocaust.cz/en/database-of-victims/victim/144137-emil-brandeis/'
+          replacements={
+          'en':'<div class="event"><div><div class="date">31 Oct 1941</div><span class="status">Identity under investigation</span></div><div><h3>Emil Brandeis deported from Prague to Łódź</h3><p>The Terezín Initiative Institute database records an Emil Brandeis, born 29 October 1873 and resident in Prague XI, deported from Prague to Łódź on Transport D, no. 596. Whether this individual was connected with the Borek factory has not yet been established.</p><p><a href="emil-brandeis.html">Follow the Emil Brandeis investigation</a> · <a href="'+victim_url+'">Holocaust.cz victim record</a></p></div></div>',
+          'cs':'<div class="event"><div><div class="date">31. října 1941</div><span class="status">Totožnost se ověřuje</span></div><div><h3>Emil Brandeis deportován z Prahy do Lodže</h3><p>Databáze Institutu Terezínské iniciativy uvádí Emila Brandeise, narozeného 29. října 1873 a bydlícího v Praze XI, který byl 31. října 1941 deportován z Prahy do Lodže transportem D, č. 596. Dosud nebylo prokázáno, zda šlo o osobu spojenou s továrnou Borek.</p><p><a href="emil-brandeis.html">Výzkum identity Emila Brandeise</a> · <a href="'+victim_url+'">záznam Holocaust.cz</a></p></div></div>',
+          'de':'<div class="event"><div><div class="date">31. Okt. 1941</div><span class="status">Identität in Untersuchung</span></div><div><h3>Emil Brandeis von Prag nach Łódź deportiert</h3><p>Die Datenbank des Instituts der Theresienstädter Initiative verzeichnet einen Emil Brandeis, geboren am 29. Oktober 1873 und wohnhaft in Prag XI, der am 31. Oktober 1941 mit Transport D, Nr. 596, von Prag nach Łódź deportiert wurde. Ob diese Person mit der Fabrik in Borek verbunden war, ist bislang nicht nachgewiesen.</p><p><a href="emil-brandeis.html">Zur Untersuchung über Emil Brandeis</a> · <a href="'+victim_url+'">Holocaust.cz-Opferdatensatz</a></p></div></div>'
+          }
+
+          def replace_event_in_block(all_text, lang, new_event):
+              if lang == 'en':
+                  m=re.search(r'(<div data-lang="en"[^>]*>)(.*?)(?=<div data-lang="cs")', all_text, re.S)
+              elif lang == 'cs':
+                  m=re.search(r'(<div data-lang="cs"[^>]*>)(.*?)(?=<div data-lang="de")', all_text, re.S)
+              else:
+                  m=re.search(r'(<div data-lang="de"[^>]*>)(.*?)(?=</main>)', all_text, re.S)
+              if not m or victim_url not in m.group(2):
+                  return all_text
+              block=m.group(2)
+              pos=block.find(victim_url)
+              start=block.rfind('<div class="event">',0,pos)
+              end=block.find('</div></div>',pos)
+              if start == -1 or end == -1:
+                  return all_text
+              end += len('</div></div>')
+              block=block[:start]+new_event+block[end:]
+              return all_text[:m.start(2)]+block+all_text[m.end(2):]
+
+          for lang,new_event in replacements.items():
+              text=replace_event_in_block(text,lang,new_event)
+          p.write_text(text,encoding='utf-8')
+
+          # Extend the Emil Brandeis page with the sequence discussed in the archive:
+          # reported 1932 cessation, physical survival before the war, the nearby
+          # airfield, unresolved wartime/post-war use, and the unconfirmed 1952 fire.
+          p=Path('emil-brandeis.html')
+          text=p.read_text(encoding='utf-8')
+
+          old_1932=re.compile(r'<div class="event"><div><div class="date">1932</div>.*?</div></div>',re.S)
+          new_1932='<div class="event"><div><div class="date">1932</div><span class="status">Open question</span></div><div><strong>Did the company actually cease to exist?</strong><br>A later local account says production stopped during the Depression, which is entirely plausible given the economic conditions and falling prices. However, the archive has not yet found a liquidation file, dissolution notice, company-register entry or other primary record showing that the company itself was formally wound up. The open question is therefore whether the Borek company was liquidated, whether production was suspended, or whether the enterprise was reorganised, consolidated or continued under another corporate structure.</div></div>'
+          text=old_1932.sub(new_1932,text,count=1)
+
+          marker='</div></section>\n<section><h2>A possible Emil Brandeis: identity under investigation</h2>'
+          if 'The factory after 1932' not in text and marker in text:
+              after='''</div></section>
+<section><h2>The factory after 1932</h2><p>The surviving evidence becomes fragmentary after the reported cessation of production. The physical survival of the industrial complex must therefore be distinguished from the legal status of the company and from any continuing industrial activity.</p><div class="timeline">
+<div class="event"><div><div class="date">Late 1930s</div><span class="status">Photographic evidence</span></div><div><strong>The Borek factory complex was still physically present before the Second World War.</strong><br>Historical photographs and pre-war aerial evidence show the industrial complex remaining substantially intact. This establishes the survival of the buildings, but does not by itself establish who owned the enterprise or whether manufacturing continued.</div></div>
+<div class="event"><div><div class="date">Pre-war / WWII</div><span class="status">Documented landscape · unresolved relationship</span></div><div><strong>A military airfield existed at Borek in the same wider landscape.</strong><br>Research correspondence and aviation sources document the former Borek field airfield, used by Czechoslovak military aviation before the war. Material concerning autogyro testing also forms part of the research trail, although the precise relationship between testing at Borek and Prague-Letňany requires careful distinction. Whether the airfield had any operational connection with the factory or railway remains an open question.</div></div>
+<div class="event"><div><div class="date">1939–1945</div><span class="status">Unresolved</span></div><div><strong>What was the factory used for during the occupation?</strong><br>No verified source has yet established the factory's specific wartime production, ownership or administrative use. The archive therefore leaves this period open rather than inferring activity from the survival of the buildings.</div></div>
+<div class="event"><div><div class="date">After 1945</div><span class="status">Research in progress</span></div><div><strong>Post-war ownership and use remain to be reconstructed.</strong><br>The next questions concern ownership, possible nationalisation, storage use, industrial reuse and the administrative history of the property.</div></div>
+<div class="event"><div><div class="date">1952?</div><span class="status">Local tradition · unconfirmed</span></div><div><strong>Did the factory burn down in 1952?</strong><br>Local tradition places a major fire at the former Borek factory around 1952. No contemporary fire report, newspaper account, municipal record, insurance record or other primary confirmation has yet been located. The date, scale of the event and the buildings affected therefore remain open questions.</div></div>
+</div></section>
+<section><h2>A possible Emil Brandeis: identity under investigation</h2>'''
+              text=text.replace(marker,after,1)
+
+          p.write_text(text,encoding='utf-8')
+
       - name: Commit refreshed pages
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html hotel-borek.html strousberg.html strousberg-memoir-summary.html strousberg-zbirow-report.html factory-catalogue.html oak-tree.html
+          git add '*.html'
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "Standardize archive navigation and restore Strousberg biography"
+            git commit -m "Align archive navigation and Brandeis research sequence"
             git push
           fi
