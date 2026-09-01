@@ -14,9 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Refresh archive navigation and Brandeis research timeline
-        shell: python
+      - name: Refresh archive pages
+        shell: bash
         run: |
+          python3 <<'PY'
           from pathlib import Path
           import re
 
@@ -31,78 +32,66 @@ jobs:
               ('hotel-borek.html','Hotel Borek'),
               ('oak-tree.html','Oak Tree'),
           ]
-
-          def nav_html(current):
-              links=[]
-              for path,label in core_pages:
-                  cls=' class="current"' if path == current else ''
-                  links.append(f'<a{cls} href="{path}">{label}</a>')
-              return '<div class="entitybar"><div class="entitybar-inner"><span class="entitybar-label">Archive pages</span>' + ''.join(links) + '</div></div>'
-
           nav_css = '.entitybar{background:#eceeec;border-bottom:1px solid #d4d8d5;font:600 13px/1.35 system-ui,sans-serif}.entitybar-inner{max-width:960px;margin:auto;padding:10px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}.entitybar-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#747c81}.entitybar a{color:#39434a;text-decoration:none}.entitybar a.current{font-weight:800;color:#151c20;text-decoration:underline}'
 
-          # Make Emil Brandeis available beside Strousberg throughout the public archive.
+          def make_nav(current):
+              bits=[]
+              for path,label in core_pages:
+                  cls=' class="current"' if path == current else ''
+                  bits.append(f'<a{cls} href="{path}">{label}</a>')
+              return '<div class="entitybar"><div class="entitybar-inner"><span class="entitybar-label">Archive pages</span>'+''.join(bits)+'</div></div>'
+
           for p in Path('.').glob('*.html'):
               text=p.read_text(encoding='utf-8')
-              nav=nav_html(p.name)
+              nav=make_nav(p.name)
               if '<div class="entitybar">' in text:
-                  text=re.sub(r'<div class="entitybar">.*?</div></div>', nav, text, count=1, flags=re.S)
+                  text=re.sub(r'<div class="entitybar">.*?</div></div>',nav,text,count=1,flags=re.S)
               else:
-                  text=text.replace('<body>', '<body>'+nav, 1)
-              head=text.split('</style>',1)[0]
-              if '.entitybar-inner' not in head and '</style>' in text:
-                  text=text.replace('</style>', nav_css + '</style>', 1)
+                  text=text.replace('<body>','<body>'+nav,1)
+              if '.entitybar-inner' not in text.split('</style>',1)[0] and '</style>' in text:
+                  text=text.replace('</style>',nav_css+'</style>',1)
               p.write_text(text,encoding='utf-8')
 
-          # Correct the old homepage conflation of the Borek industrialist with the
-          # Holocaust.cz record.  The linked record is for Emil Brandeis, born 1873,
-          # Prague XI, deported Prague -> Lodz on 31 October 1941.  The Borek identity
-          # is not yet established.
+          # Correct the old homepage Emil Brandeis identification wherever the linked
+          # Holocaust.cz record appears. The record itself is 1873 / Prague XI /
+          # Prague to Lodz, 31 Oct 1941; the connection with Borek remains unproven.
           p=Path('index.html')
           text=p.read_text(encoding='utf-8')
-          victim_url='https://www.holocaust.cz/en/database-of-victims/victim/144137-emil-brandeis/'
-          replacements={
-          'en':'<div class="event"><div><div class="date">31 Oct 1941</div><span class="status">Identity under investigation</span></div><div><h3>Emil Brandeis deported from Prague to Łódź</h3><p>The Terezín Initiative Institute database records an Emil Brandeis, born 29 October 1873 and resident in Prague XI, deported from Prague to Łódź on Transport D, no. 596. Whether this individual was connected with the Borek factory has not yet been established.</p><p><a href="emil-brandeis.html">Follow the Emil Brandeis investigation</a> · <a href="'+victim_url+'">Holocaust.cz victim record</a></p></div></div>',
-          'cs':'<div class="event"><div><div class="date">31. října 1941</div><span class="status">Totožnost se ověřuje</span></div><div><h3>Emil Brandeis deportován z Prahy do Lodže</h3><p>Databáze Institutu Terezínské iniciativy uvádí Emila Brandeise, narozeného 29. října 1873 a bydlícího v Praze XI, který byl 31. října 1941 deportován z Prahy do Lodže transportem D, č. 596. Dosud nebylo prokázáno, zda šlo o osobu spojenou s továrnou Borek.</p><p><a href="emil-brandeis.html">Výzkum identity Emila Brandeise</a> · <a href="'+victim_url+'">záznam Holocaust.cz</a></p></div></div>',
-          'de':'<div class="event"><div><div class="date">31. Okt. 1941</div><span class="status">Identität in Untersuchung</span></div><div><h3>Emil Brandeis von Prag nach Łódź deportiert</h3><p>Die Datenbank des Instituts der Theresienstädter Initiative verzeichnet einen Emil Brandeis, geboren am 29. Oktober 1873 und wohnhaft in Prag XI, der am 31. Oktober 1941 mit Transport D, Nr. 596, von Prag nach Łódź deportiert wurde. Ob diese Person mit der Fabrik in Borek verbunden war, ist bislang nicht nachgewiesen.</p><p><a href="emil-brandeis.html">Zur Untersuchung über Emil Brandeis</a> · <a href="'+victim_url+'">Holocaust.cz-Opferdatensatz</a></p></div></div>'
+          url='https://www.holocaust.cz/en/database-of-victims/victim/144137-emil-brandeis/'
+          new_events={
+              'en': '<div class="event"><div><div class="date">31 Oct 1941</div><span class="status">Identity under investigation</span></div><div><h3>Emil Brandeis deported from Prague to Łódź</h3><p>The Terezín Initiative Institute database records an Emil Brandeis, born 29 October 1873 and resident in Prague XI, deported from Prague to Łódź on Transport D, no. 596. Whether this individual was connected with the Borek factory has not yet been established.</p><p><a href="emil-brandeis.html">Follow the Emil Brandeis investigation</a> · <a href="'+url+'">Holocaust.cz victim record</a></p></div></div>',
+              'cs': '<div class="event"><div><div class="date">31. října 1941</div><span class="status">Totožnost se ověřuje</span></div><div><h3>Emil Brandeis deportován z Prahy do Lodže</h3><p>Databáze Institutu Terezínské iniciativy uvádí Emila Brandeise, narozeného 29. října 1873 a bydlícího v Praze XI, deportovaného 31. října 1941 z Prahy do Lodže transportem D, č. 596. Dosud nebylo prokázáno, zda šlo o osobu spojenou s továrnou Borek.</p><p><a href="emil-brandeis.html">Výzkum identity Emila Brandeise</a> · <a href="'+url+'">záznam Holocaust.cz</a></p></div></div>',
+              'de': '<div class="event"><div><div class="date">31. Okt. 1941</div><span class="status">Identität in Untersuchung</span></div><div><h3>Emil Brandeis von Prag nach Łódź deportiert</h3><p>Die Datenbank des Instituts der Theresienstädter Initiative verzeichnet einen Emil Brandeis, geboren am 29. Oktober 1873 und wohnhaft in Prag XI, der am 31. Oktober 1941 mit Transport D, Nr. 596, von Prag nach Łódź deportiert wurde. Ob diese Person mit der Fabrik in Borek verbunden war, ist bislang nicht nachgewiesen.</p><p><a href="emil-brandeis.html">Zur Untersuchung über Emil Brandeis</a> · <a href="'+url+'">Holocaust.cz-Opferdatensatz</a></p></div></div>',
           }
-
-          def replace_event_in_block(all_text, lang, new_event):
-              if lang == 'en':
-                  m=re.search(r'(<div data-lang="en"[^>]*>)(.*?)(?=<div data-lang="cs")', all_text, re.S)
-              elif lang == 'cs':
-                  m=re.search(r'(<div data-lang="cs"[^>]*>)(.*?)(?=<div data-lang="de")', all_text, re.S)
-              else:
-                  m=re.search(r'(<div data-lang="de"[^>]*>)(.*?)(?=</main>)', all_text, re.S)
-              if not m or victim_url not in m.group(2):
-                  return all_text
-              block=m.group(2)
-              pos=block.find(victim_url)
-              start=block.rfind('<div class="event">',0,pos)
-              end=block.find('</div></div>',pos)
-              if start == -1 or end == -1:
-                  return all_text
-              end += len('</div></div>')
-              block=block[:start]+new_event+block[end:]
-              return all_text[:m.start(2)]+block+all_text[m.end(2):]
-
-          for lang,new_event in replacements.items():
-              text=replace_event_in_block(text,lang,new_event)
+          for lang,new_event in new_events.items():
+              start_marker=f'<div data-lang="{lang}"'
+              start=text.find(start_marker)
+              if start < 0: continue
+              if lang == 'en': stop=text.find('<div data-lang="cs"',start)
+              elif lang == 'cs': stop=text.find('<div data-lang="de"',start)
+              else: stop=text.find('</main>',start)
+              if stop < 0: stop=len(text)
+              block=text[start:stop]
+              pos=block.find(url)
+              if pos < 0: continue
+              es=block.rfind('<div class="event">',0,pos)
+              ee=block.find('</div></div>',pos)
+              if es < 0 or ee < 0: continue
+              ee += len('</div></div>')
+              block=block[:es]+new_event+block[ee:]
+              text=text[:start]+block+text[stop:]
           p.write_text(text,encoding='utf-8')
 
-          # Extend the Emil Brandeis page with the sequence discussed in the archive:
-          # reported 1932 cessation, physical survival before the war, the nearby
-          # airfield, unresolved wartime/post-war use, and the unconfirmed 1952 fire.
           p=Path('emil-brandeis.html')
           text=p.read_text(encoding='utf-8')
-
-          old_1932=re.compile(r'<div class="event"><div><div class="date">1932</div>.*?</div></div>',re.S)
-          new_1932='<div class="event"><div><div class="date">1932</div><span class="status">Open question</span></div><div><strong>Did the company actually cease to exist?</strong><br>A later local account says production stopped during the Depression, which is entirely plausible given the economic conditions and falling prices. However, the archive has not yet found a liquidation file, dissolution notice, company-register entry or other primary record showing that the company itself was formally wound up. The open question is therefore whether the Borek company was liquidated, whether production was suspended, or whether the enterprise was reorganised, consolidated or continued under another corporate structure.</div></div>'
-          text=old_1932.sub(new_1932,text,count=1)
+          text=re.sub(
+              r'<div class="event"><div><div class="date">1932</div>.*?</div></div>',
+              '<div class="event"><div><div class="date">1932</div><span class="status">Open question</span></div><div><strong>Did the company actually cease to exist?</strong><br>A later local account says production stopped during the Depression, which is entirely plausible given the economic conditions and falling prices. However, the archive has not yet found a liquidation file, dissolution notice, company-register entry or other primary record showing that the company itself was formally wound up. The open question is therefore whether the Borek company was liquidated, whether production was suspended, or whether the enterprise was reorganised, consolidated or continued under another corporate structure.</div></div>',
+              text,count=1,flags=re.S)
 
           marker='</div></section>\n<section><h2>A possible Emil Brandeis: identity under investigation</h2>'
           if 'The factory after 1932' not in text and marker in text:
-              after='''</div></section>
+              sequence='''</div></section>
 <section><h2>The factory after 1932</h2><p>The surviving evidence becomes fragmentary after the reported cessation of production. The physical survival of the industrial complex must therefore be distinguished from the legal status of the company and from any continuing industrial activity.</p><div class="timeline">
 <div class="event"><div><div class="date">Late 1930s</div><span class="status">Photographic evidence</span></div><div><strong>The Borek factory complex was still physically present before the Second World War.</strong><br>Historical photographs and pre-war aerial evidence show the industrial complex remaining substantially intact. This establishes the survival of the buildings, but does not by itself establish who owned the enterprise or whether manufacturing continued.</div></div>
 <div class="event"><div><div class="date">Pre-war / WWII</div><span class="status">Documented landscape · unresolved relationship</span></div><div><strong>A military airfield existed at Borek in the same wider landscape.</strong><br>Research correspondence and aviation sources document the former Borek field airfield, used by Czechoslovak military aviation before the war. Material concerning autogyro testing also forms part of the research trail, although the precise relationship between testing at Borek and Prague-Letňany requires careful distinction. Whether the airfield had any operational connection with the factory or railway remains an open question.</div></div>
@@ -111,15 +100,15 @@ jobs:
 <div class="event"><div><div class="date">1952?</div><span class="status">Local tradition · unconfirmed</span></div><div><strong>Did the factory burn down in 1952?</strong><br>Local tradition places a major fire at the former Borek factory around 1952. No contemporary fire report, newspaper account, municipal record, insurance record or other primary confirmation has yet been located. The date, scale of the event and the buildings affected therefore remain open questions.</div></div>
 </div></section>
 <section><h2>A possible Emil Brandeis: identity under investigation</h2>'''
-              text=text.replace(marker,after,1)
-
+              text=text.replace(marker,sequence,1)
           p.write_text(text,encoding='utf-8')
-
+          PY
       - name: Commit refreshed pages
+        shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add '*.html'
+          git add -- *.html
           if git diff --cached --quiet; then
             echo "No changes"
           else
