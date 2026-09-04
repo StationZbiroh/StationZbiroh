@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Economist, 27 November 1875 — Strousberg and Zbirow</title><style>:root{--ink:#17202a;--muted:#5e6a73;--line:#d7dde2;--paper:#fbfbf8;--accent:#4169E1;--soft:#f1f2ee;--max:960px}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.65}.entitybar{background:#eceeec;border-bottom:1px solid #d4d8d5;font:600 13px/1.35 system-ui,sans-serif}.entitybar-inner{max-width:var(--max);margin:auto;padding:10px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}.entitybar-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#747c81}.entitybar a{color:#39434a;text-decoration:none}header,main,footer{max-width:var(--max);margin:auto;padding-left:24px;padding-right:24px}header{padding-top:48px;padding-bottom:28px;border-bottom:1px solid var(--line)}h1{font-size:clamp(32px,6vw,52px);line-height:1.05;font-weight:500}.kicker{font:600 12px system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}.lede{font-size:20px}.note{background:var(--soft);padding:20px;border-left:4px solid var(--accent);margin:30px 0}.source-text p{margin:1em 0}.source-text{font-size:17px}main{padding-top:30px;padding-bottom:60px}a{color:var(--accent)}footer{border-top:1px solid var(--line);padding-top:22px;padding-bottom:42px;color:var(--muted);font-size:14px}</style>
+
 <style id="site-language-bar-style">
 .site-language-bar{position:sticky;top:0;z-index:1000;background:rgba(251,251,248,.97);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #d7dde2;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 .site-language-bar-inner{max-width:960px;margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:center;gap:10px}
@@ -8,7 +9,8 @@
 @media(max-width:480px){.site-language-bar-inner{padding:9px 12px;gap:4px}.site-language-bar a{font-size:13px;padding:5px 7px}}
 </style>
 </head><body>
-<nav class="site-language-bar" aria-label="Language"><div class="site-language-bar-inner"><a href="https://translate.google.com/translate?sl=en&tl=cs&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Feconomist-strousberg-1875.html">Čeština</a><a class="current" href="economist-strousberg-1875.html">English</a><a href="https://translate.google.com/translate?sl=en&tl=de&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Feconomist-strousberg-1875.html">Deutsch</a></div></nav>
+<nav class="site-language-bar" aria-label="Language"><div class="site-language-bar-inner"><a data-site-lang="cs" href="https://translate.google.com/translate?sl=en&tl=cs&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Feconomist-strousberg-1875.html">Čeština</a><a data-site-lang="en" class="current" href="economist-strousberg-1875.html">English</a><a data-site-lang="de" href="https://translate.google.com/translate?sl=en&tl=de&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Feconomist-strousberg-1875.html">Deutsch</a></div></nav>
+
 
 <div class="entitybar"><div class="entitybar-inner"><span class="entitybar-label">Archive pages</span><a href="index.html">Archive</a><a href="hotel-borek.html">Hotel Borek</a><a href="strousberg.html">Strousberg</a><a href="strousberg-memoir-summary.html">Memoir Summary</a><a href="strousberg-zbirow-report.html">1875 Report</a><a href="factory-catalogue.html">Factory Catalogue</a><a href="oak-tree.html">Oak Tree</a><a href="economist-strousberg-1875.html">Economist 1875</a></div></div>
 <header><div class="kicker">Primary source · contemporary financial press</div><h1><em>The Economist</em>, 27 November 1875</h1><p class="lede">A contemporary report on Bethel Henry Strousberg, his Zbirow industrial complex, the Russian railway-car contracts and the administration of his bankrupt estate.</p></header>
@@ -35,4 +37,30 @@
 <p>The administrator finally declares that the personal presence of Strousberg is very much to be desired, and advises the creditors to demand that he should be set free. This has, in fact, since been obtained.</p>
 </div></section>
 <section class="note"><h2>Editorial note</h2><p>The transcription preserves the nineteenth-century English of the photographed pages. The archive PDF contains the supplied photographs in reading order so that the transcription can be checked against the primary source.</p></section>
-</main><footer>Stanice Zbiroh Historical Research Archive · Primary source transcription</footer></body></html>
+</main><footer>Stanice Zbiroh Historical Research Archive · Primary source transcription</footer>
+<script id="site-language-bar-script">
+(function(){
+  const bar=document.querySelector('.site-language-bar');
+  if(!bar) return;
+  bar.querySelectorAll('a[data-site-lang]').forEach(a=>{
+    a.addEventListener('click',function(e){
+      const lang=this.dataset.siteLang;
+      const nativeButton=document.querySelector('[data-switch="'+lang+'"]');
+      if(nativeButton){
+        e.preventDefault();
+        nativeButton.click();
+        bar.querySelectorAll('a').forEach(x=>x.classList.remove('current'));
+        this.classList.add('current');
+        try{history.replaceState(null,'',location.pathname+'#'+lang)}catch(_){}
+      }
+    });
+  });
+  const hash=(location.hash||'').replace('#','');
+  if(['cs','en','de'].includes(hash)){
+    const nativeButton=document.querySelector('[data-switch="'+hash+'"]');
+    const link=bar.querySelector('[data-site-lang="'+hash+'"]');
+    if(nativeButton&&link){nativeButton.click();bar.querySelectorAll('a').forEach(x=>x.classList.remove('current'));link.classList.add('current');}
+  }
+})();
+</script>
+</body></html>

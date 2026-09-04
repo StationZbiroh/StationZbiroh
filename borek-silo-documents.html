@@ -9,6 +9,7 @@
 :root{--ink:#17202a;--muted:#5e6a73;--line:#d7dde2;--paper:#fbfbf8;--accent:#4169E1;--soft:#f1f2ee;--max:960px}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.65}header,main,footer{max-width:var(--max);margin:auto;padding-left:24px;padding-right:24px}header{padding-top:48px;padding-bottom:30px;border-bottom:1px solid var(--line)}main{padding-top:34px;padding-bottom:64px}h1{font-size:clamp(38px,7vw,62px);line-height:1.03;margin:.35rem 0 1rem;font-weight:500}h2{font-size:28px;font-weight:500}.kicker{font:600 12px system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}.lede{font-size:20px;max-width:820px;color:#303b43}.note{margin:28px 0;padding:18px 20px;background:var(--soft);border-left:4px solid var(--accent)}a{color:var(--accent)}footer{border-top:1px solid var(--line);padding-top:22px;padding-bottom:42px;color:var(--muted);font-size:14px}.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}.gallery figure{margin:0;background:#fff;border:1px solid var(--line);padding:10px}.gallery img{width:100%;height:auto;display:block}.gallery figcaption{font-size:13px;color:var(--muted);padding-top:8px}
 </style>
 
+
 <style id="site-language-bar-style">
 .site-language-bar{position:sticky;top:0;z-index:1000;background:rgba(251,251,248,.97);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #d7dde2;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 .site-language-bar-inner{max-width:960px;margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:center;gap:10px}
@@ -18,7 +19,8 @@
 </style>
 </head>
 <body>
-<nav class="site-language-bar" aria-label="Language"><div class="site-language-bar-inner"><a href="https://translate.google.com/translate?sl=en&tl=cs&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Fborek-silo-documents.html">Čeština</a><a class="current" href="borek-silo-documents.html">English</a><a href="https://translate.google.com/translate?sl=en&tl=de&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Fborek-silo-documents.html">Deutsch</a></div></nav>
+<nav class="site-language-bar" aria-label="Language"><div class="site-language-bar-inner"><a data-site-lang="cs" href="https://translate.google.com/translate?sl=en&tl=cs&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Fborek-silo-documents.html">Čeština</a><a data-site-lang="en" class="current" href="borek-silo-documents.html">English</a><a data-site-lang="de" href="https://translate.google.com/translate?sl=en&tl=de&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Fborek-silo-documents.html">Deutsch</a></div></nav>
+
 
 <header>
 <div class="kicker">Stanice Zbiroh · Source documents · Research in progress</div>
@@ -42,5 +44,31 @@
 <section><h2>Research questions connected with these documents</h2><p>The documents may help establish when Železárna Borek marketed or manufactured silo equipment based on the Richard Aurich system, what Czechoslovak patent or licence arrangements existed, and whether this agricultural and storage technology helps explain the later use of the Borek factory site for grain storage.</p><p>The page deliberately separates the source images from conclusions about the date, patent ownership, licensing arrangements or later history of the factory.</p></section>
 </main>
 <footer>Stanice Zbiroh Historical Research Archive · Updated 2 September 2026</footer>
+
+<script id="site-language-bar-script">
+(function(){
+  const bar=document.querySelector('.site-language-bar');
+  if(!bar) return;
+  bar.querySelectorAll('a[data-site-lang]').forEach(a=>{
+    a.addEventListener('click',function(e){
+      const lang=this.dataset.siteLang;
+      const nativeButton=document.querySelector('[data-switch="'+lang+'"]');
+      if(nativeButton){
+        e.preventDefault();
+        nativeButton.click();
+        bar.querySelectorAll('a').forEach(x=>x.classList.remove('current'));
+        this.classList.add('current');
+        try{history.replaceState(null,'',location.pathname+'#'+lang)}catch(_){}
+      }
+    });
+  });
+  const hash=(location.hash||'').replace('#','');
+  if(['cs','en','de'].includes(hash)){
+    const nativeButton=document.querySelector('[data-switch="'+hash+'"]');
+    const link=bar.querySelector('[data-site-lang="'+hash+'"]');
+    if(nativeButton&&link){nativeButton.click();bar.querySelectorAll('a').forEach(x=>x.classList.remove('current'));link.classList.add('current');}
+  }
+})();
+</script>
 </body>
 </html>
