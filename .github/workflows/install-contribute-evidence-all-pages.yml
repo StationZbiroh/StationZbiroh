@@ -1,0 +1,60 @@
+name: Install contribute evidence form on all archive pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  install-contribute-form:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add universal contribute-evidence form to every HTML page
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          pages = sorted(Path('.').rglob('*.html'))
+
+          css = '''\n<style id="site-contribute-evidence-style">\n.site-contribute-evidence{max-width:960px;margin:48px auto 0;padding:28px 24px 34px;background:#f1f2ee;border-top:4px solid #4169E1;font-family:Georgia,'Times New Roman',serif;color:#17202a}\n.site-contribute-evidence h2{margin:0 0 10px;font-size:26px;font-weight:500}\n.site-contribute-evidence p{margin:0 0 18px;line-height:1.6}\n.site-evidence-form{display:grid;gap:12px}\n.site-evidence-form label{font:600 13px system-ui,sans-serif;color:#17202a}\n.site-evidence-form input,.site-evidence-form textarea{width:100%;margin-top:5px;padding:11px 12px;border:1px solid #d7dde2;border-radius:3px;background:#fff;color:#17202a;font:16px/1.4 system-ui,sans-serif}\n.site-evidence-form textarea{min-height:150px;resize:vertical}\n.site-evidence-form button{justify-self:start;background:#4169E1;color:#fff;border:0;padding:11px 18px;border-radius:3px;font:700 14px system-ui,sans-serif;cursor:pointer}\n.site-evidence-form .site-privacy-note{font:13px/1.5 system-ui,sans-serif;color:#5e6a73;margin:0}\n.site-evidence-form .site-hp{position:absolute;left:-9999px}\n@media(max-width:650px){.site-contribute-evidence{margin-top:34px;padding:24px 18px 28px}}\n</style>\n'''
+
+          block = '''\n<section class="site-contribute-evidence" id="contribute-evidence">\n<h2>Contribute evidence · Přispějte důkazy · Belege beitragen</h2>\n<p>Have a document, photograph, correction, archival reference, source link or historical lead? Send it directly to the Stanice Zbiroh Historical Research Archive. · Máte dokument, fotografii, opravu, archivní odkaz, zdroj nebo historickou stopu? Pošlete ji přímo do Historického výzkumného archivu Stanice Zbiroh. · Haben Sie ein Dokument, Foto, eine Korrektur, Archivangabe, Quellenangabe oder historische Spur? Senden Sie sie direkt an das Historische Forschungsarchiv Stanice Zbiroh.</p>\n<form class="site-evidence-form" action="https://formsubmit.co/zbirohstation@gmail.com" method="POST">\n<input type="hidden" name="_subject" value="New evidence submission — Stanice Zbiroh Archive">\n<input type="hidden" name="_template" value="table">\n<input type="text" name="_honey" class="site-hp" tabindex="-1" autocomplete="off">\n<label>Name / Jméno / Name (optional)<input type="text" name="name"></label>\n<label>Email (optional)<input type="email" name="email"></label>\n<label>Information, source or historical lead / Informace, zdroj nebo historická stopa / Information, Quelle oder historische Spur<textarea name="message" required></textarea></label>\n<button type="submit">Send evidence · Odeslat důkaz · Beleg senden</button>\n<p class="site-privacy-note">Submissions are processed by FormSubmit and forwarded to the archive email account; complete technical anonymity cannot be guaranteed.</p>\n</form>\n</section>\n'''
+
+          for path in pages:
+              text = path.read_text(encoding='utf-8')
+              original = text
+
+              text = re.sub(r'\n?<style id="site-contribute-evidence-style">.*?</style>\n?', '\n', text, flags=re.S)
+              text = re.sub(r'\n?<section class="site-contribute-evidence" id="contribute-evidence">.*?</section>\n?', '\n', text, flags=re.S)
+
+              if '</head>' in text:
+                  text = text.replace('</head>', css + '</head>', 1)
+
+              if re.search(r'<footer\b', text, flags=re.I):
+                  text = re.sub(r'(<footer\b)', block + r'\1', text, count=1, flags=re.I)
+              elif re.search(r'</body>', text, flags=re.I):
+                  text = re.sub(r'</body>', block + '</body>', text, count=1, flags=re.I)
+
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+
+          PY
+
+      - name: Commit contribute-evidence forms
+        run: |
+          if git diff --quiet; then
+            echo "No contribute-form changes needed."
+            exit 0
+          fi
+          git config user.name "Station Zbiroh"
+          git config user.email "zbirohstation@gmail.com"
+          git add '*.html' '**/*.html' 2>/dev/null || true
+          git commit -am "Add contribute evidence form to every page" || git commit -m "Add contribute evidence form to every page"
+          git push
