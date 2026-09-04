@@ -5,13 +5,6 @@
 
 
 
-<style id="site-language-bar-style">
-.site-language-bar{position:sticky;top:0;z-index:1000;background:rgba(251,251,248,.97);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #d7dde2;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-.site-language-bar-inner{max-width:960px;margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:center;gap:10px}
-.site-language-bar a{color:#39434a;text-decoration:none;font-weight:700;font-size:14px;padding:5px 9px;border-radius:3px;white-space:nowrap}
-.site-language-bar a.current{background:#17202a;color:#fff}
-@media(max-width:480px){.site-language-bar-inner{padding:9px 12px;gap:4px}.site-language-bar a{font-size:13px;padding:5px 7px}}
-</style>
 
 <style id="site-contribute-evidence-style">
 .site-contribute-evidence{max-width:960px;margin:48px auto 0;padding:28px 24px 34px;background:#f1f2ee;border-top:4px solid #4169E1;font-family:Georgia,'Times New Roman',serif;color:#17202a}
@@ -26,13 +19,24 @@
 .site-evidence-form .site-hp{position:absolute;left:-9999px}
 @media(max-width:650px){.site-contribute-evidence{margin-top:34px;padding:24px 18px 28px}}
 </style>
+
+<style id="site-language-bar-style">
+.site-language-bar{position:sticky;top:0;z-index:1000;background:rgba(251,251,248,.97);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #d7dde2;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.site-language-bar-inner{max-width:960px;margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:center;gap:10px}
+.site-language-bar a{color:#39434a;text-decoration:none;font-weight:700;font-size:14px;padding:5px 9px;border-radius:3px;white-space:nowrap}
+.site-language-bar a.current{background:#17202a;color:#fff}
+.site-native-language-switch{display:none!important}
+[data-switch]{display:none!important}
+@media(max-width:480px){.site-language-bar-inner{padding:9px 12px;gap:4px}.site-language-bar a{font-size:13px;padding:5px 7px}}
+</style>
 </head><body>
 <nav class="site-language-bar" aria-label="Language"><div class="site-language-bar-inner"><a data-site-lang="cs" href="#cs">Čeština</a><a data-site-lang="en" class="current" href="#en">English</a><a data-site-lang="de" href="#de">Deutsch</a></div></nav>
 
 
 
+
 <div class="entitybar"><div class="entitybar-inner"><span class="entitybar-label">Archive pages</span><a href="index.html">Archive</a><a href="hotel-borek.html">Hotel Borek</a><a href="strousberg.html">Strousberg</a><a class="current" href="strousberg-memoir-summary.html">Memoir Summary</a><a href="strousberg-zbirow-report.html">1875 Report</a><a href="factory-catalogue.html">Factory Catalogue</a><a href="oak-tree.html">Oak Tree</a></div></div>
-<header><div class="kicker">Stanice Zbiroh Historical Research Archive · Primary-source summary</div><h1>Strousberg's Memoirs — Summary</h1><p class="lede">A condensed account of <em>Dr. Strousberg und sein Wirken</em> (Berlin, 1876), explaining how Bethel Henry Strousberg described his life, railway system, industrial philosophy, Zbirow enterprise, financing and collapse.</p><div class="source-note"><strong>Source note.</strong> This page summarises Strousberg's own 1876 account. It does not treat every statement as independently proven fact. Strousberg himself warned that he was writing in Moscow without access to his business books and files and was relying substantially on memory.</div><nav><button data-switch="en" aria-pressed="true">English</button><button data-switch="cs" aria-pressed="false">Česky</button><button data-switch="de" aria-pressed="false">Deutsch</button></nav></header>
+<header><div class="kicker">Stanice Zbiroh Historical Research Archive · Primary-source summary</div><h1>Strousberg's Memoirs — Summary</h1><p class="lede">A condensed account of <em>Dr. Strousberg und sein Wirken</em> (Berlin, 1876), explaining how Bethel Henry Strousberg described his life, railway system, industrial philosophy, Zbirow enterprise, financing and collapse.</p><div class="source-note"><strong>Source note.</strong> This page summarises Strousberg's own 1876 account. It does not treat every statement as independently proven fact. Strousberg himself warned that he was writing in Moscow without access to his business books and files and was relying substantially on memory.</div><nav class="site-native-language-switch"><button data-switch="en" aria-pressed="true">English</button><button data-switch="cs" aria-pressed="false">Česky</button><button data-switch="de" aria-pressed="false">Deutsch</button></nav></header>
 <main>
 <div data-lang="en" class="active">
 <section><h2>Why he wrote the book</h2><p>The memoir is fundamentally a defence of Strousberg's life and work. By 1876 the business empire he had constructed across Germany, Austria-Hungary, Romania and Russia had largely collapsed. He had been attacked in parliament and in the press, declared bankrupt and drawn into proceedings in Moscow. His central argument is consistent throughout the book: financial failure did not, in his view, prove that his enterprises were fraudulent, badly conceived or technically worthless. He believed that financial crises, political hostility, damaged credit, contractual disputes, delays in refinancing and ultimately the failure of banking support destroyed projects that could otherwise have matured.</p><p>The book is therefore autobiography, economic argument, engineering history and legal self-defence at the same time. Strousberg is not an impartial narrator; he is frequently angry with his critics and determined to recover his reputation. But the book is especially valuable because it explains in detail how he believed his system was supposed to work.</p></section>
@@ -100,6 +104,7 @@
 </form>
 </section>
 <footer>Stanice Zbiroh Historical Research Archive · Strousberg memoir summary · Primary source interpreted with caution.</footer><script>const bs=[...document.querySelectorAll('[data-switch]')],ps=[...document.querySelectorAll('[data-lang]')];bs.forEach(b=>b.onclick=()=>{let l=b.dataset.switch;bs.forEach(x=>x.setAttribute('aria-pressed',x===b));ps.forEach(p=>p.classList.toggle('active',p.dataset.lang===l));document.documentElement.lang=l})</script>
+
 
 <script id="site-language-bar-script">
 (function(){
