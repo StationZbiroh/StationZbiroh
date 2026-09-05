@@ -1,10 +1,47 @@
-name: One-time navigation refresh (manual only)
+name: One-time front-page people navigation refresh
 
 on:
-  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/one-time-navigation-refresh.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: archive-site-maintenance
+  cancel-in-progress: false
 
 jobs:
-  noop:
+  update-front-navigation:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Navigation refresh is now handled by direct archive updates."
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add people pages to front-page archive navigation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          anchor = '<a href="oak-tree.html">Oak Tree</a>'
+          addition = anchor + '<a href="emil-brandeis.html">Emil Brandeis</a><a href="emil-goldschmied.html">Emil &amp; Ludwig Goldschmied</a>'
+          if 'href="emil-goldschmied.html"' not in s:
+              if anchor not in s:
+                  raise SystemExit('Oak Tree navigation anchor not found')
+              s = s.replace(anchor, addition, 1)
+              p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit change
+        run: |
+          if git diff --quiet -- index.html; then
+            echo 'No change needed.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Add Brandeis and Goldschmied pages to front navigation'
+          git pull --rebase origin main
+          git push origin HEAD:main
