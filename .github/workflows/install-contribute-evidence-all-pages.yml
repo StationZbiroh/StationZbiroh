@@ -7,6 +7,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: archive-site-maintenance
+  cancel-in-progress: false
+
 jobs:
   install-contribute-form:
     runs-on: ubuntu-latest
