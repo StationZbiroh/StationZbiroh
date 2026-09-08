@@ -1,13 +1,14 @@
 (function(){
   const pages={
+    overview:[['stanice-zbiroh.html','Stanice Zbiroh timeline'],['why-this-site.html','Why is this site here?']],
     station:[['stanice-zbiroh.html','Master station timeline'],['stanice-zbiroh-cs.html','Historie stanice · česky'],['stanice-zbiroh-de.html','Bahnhofsgeschichte · Deutsch'],['hotel-borek.html','Hotel Borek'],['hotel-borek-interior-postcard.html','Hotel interior postcard'],['hotel-borek-postcard-text.html','Postcard text and dating'],['oak-tree.html','The oak tree']],
     industry:[['factory-catalogue.html','Factory catalogue'],['brandeis-eisenschimmel-factory-images.html','Factory images'],['borek-silo-documents.html','Silo documents'],['borek-aurich-silo-research.html','Aurich and the silo question'],['strousberg.html','Strousberg overview'],['strousberg-zbirow-report.html','1875 industrial report'],['strousberg-memoir-summary.html','Memoir summary'],['strousberg-reputation.html','Reputation and evidence'],['economist-strousberg-1875.html','The Economist, 1875'],['property-rights.html','Property-rights research']],
     people:[['emil-brandeis.html','Emil Brandeis'],['franz-eisenschimmel.html','Franz Eisenschimmel — engineer'],['valtr-eisenschimmel.html','Dr Valtr Eisenschimmel — chemist'],['people.html','Josef Švejkovský — Kařez tool manufacturer'],['emil-goldschmied.html','Emil and Ludwig Goldschmied'],['goldschmied-borek-1879.html','Goldschmied and Borek, 1879'],['strousberg.html','Bethel Henry Strousberg']],
-    sources:[['index.html','Why is this site here?'],['connected-timeline.html','Connected historical timeline'],['discovery-trail.html','Discovery trail'],['source-catalogue.html','Source catalogue'],['research-register.html','Page-by-page research register'],['people-and-organisations.html','People and organisations'],['archive-guide.html','Archive guide'],['research-index.json','Machine-readable research index'],['METHODOLOGY.md','Research methodology'],['research/TIMELINE.md','Working timeline'],['research/BOREK_INDUSTRIAL_HISTORY.md','Industrial research notes'],['research/HOTEL-BOREK.md','Hotel Borek notes']]
+    sources:[['connected-timeline.html','Connected historical timeline'],['discovery-trail.html','Discovery trail'],['source-catalogue.html','Source catalogue'],['research-register.html','Page-by-page research register'],['people-and-organisations.html','People and organisations'],['archive-guide.html','Archive guide'],['research-index.json','Machine-readable research index'],['METHODOLOGY.md','Research methodology'],['research/TIMELINE.md','Working timeline'],['research/BOREK_INDUSTRIAL_HISTORY.md','Industrial research notes'],['research/HOTEL-BOREK.md','Hotel Borek notes']]
   };
   const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
   const pageMeta={
-    'index.html':['Why is this site here?','Archive purpose and scope'],
+    'why-this-site.html':['Why is this site here?','Archive purpose and scope'],
     'archive-guide.html':['Archive orientation','Method and scope'],
     'source-catalogue.html':['Finding aid','Cataloguing in progress'],
     'research-register.html':['Research control','Page-by-page assessment'],
@@ -162,11 +163,11 @@
       ['Unfinished work','research-register.html','The research register shows which chronological links still depend on deeds, company files, railway records or identity evidence.']
     ]
   };
-  const label={station:'Station & landscape',industry:'Industry & property',people:'People',sources:'Sources & method'};
+  const label={overview:'Overview',station:'Station & landscape',industry:'Industry & property',people:'People',sources:'Sources & method'};
   const menu=(key)=>`<details><summary>${label[key]}</summary><div class="archive-menu">${pages[key].map(([href,text])=>`<a href="${href}"${current===href.toLowerCase()?' aria-current="page"':''}>${text}</a>`).join('')}</div></details>`;
   const old=document.querySelector('.entitybar,.bar');
   const nav=document.createElement('nav');nav.className='archive-nav';nav.setAttribute('aria-label','Archive navigation');
-  nav.innerHTML=`<div class="archive-nav__inner"><a class="archive-brand" href="stanice-zbiroh.html">Stanice Zbiroh Archive</a><div class="archive-nav__groups"><a class="archive-direct" href="stanice-zbiroh.html"${current==='stanice-zbiroh.html'?' aria-current="page"':''}>Overview</a>${menu('station')}${menu('industry')}${menu('people')}${menu('sources')}</div></div>`;
+  nav.innerHTML=`<div class="archive-nav__inner"><a class="archive-brand" href="stanice-zbiroh.html">Stanice Zbiroh Archive</a><div class="archive-nav__groups">${menu('overview')}${menu('station')}${menu('industry')}${menu('people')}${menu('sources')}</div></div>`;
   if(old) old.replaceWith(nav); else {const anchor=document.querySelector('.site-language-bar');(anchor||document.body.firstChild).after(nav)}
   const main=document.querySelector('main');if(main){main.id='main-content';main.tabIndex=-1}
   const skip=document.createElement('a');skip.className='archive-skip';skip.href='#main-content';skip.textContent='Skip to main content';document.body.prepend(skip);
