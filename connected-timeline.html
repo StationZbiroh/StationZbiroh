@@ -9,6 +9,20 @@
 .languages,.language-switch,.language-switcher,.lang-switch,.lang-switcher,.lang-buttons,.language-buttons{display:none!important}
 @media(max-width:480px){.site-language-bar-inner{padding:9px 12px;gap:4px}.site-language-bar a{font-size:13px;padding:5px 7px}}
 </style>
+
+<style id="site-contribute-evidence-style">
+.site-contribute-evidence{max-width:960px;margin:48px auto 0;padding:28px 24px 34px;background:#f1f2ee;border-top:4px solid #4169E1;font-family:Georgia,'Times New Roman',serif;color:#17202a}
+.site-contribute-evidence h2{margin:0 0 10px;font-size:26px;font-weight:500}
+.site-contribute-evidence p{margin:0 0 18px;line-height:1.6}
+.site-evidence-form{display:grid;gap:12px}
+.site-evidence-form label{font:600 13px system-ui,sans-serif;color:#17202a}
+.site-evidence-form input,.site-evidence-form textarea{width:100%;margin-top:5px;padding:11px 12px;border:1px solid #d7dde2;border-radius:3px;background:#fff;color:#17202a;font:16px/1.4 system-ui,sans-serif}
+.site-evidence-form textarea{min-height:150px;resize:vertical}
+.site-evidence-form button{justify-self:start;background:#4169E1;color:#fff;border:0;padding:11px 18px;border-radius:3px;font:700 14px system-ui,sans-serif;cursor:pointer}
+.site-evidence-form .site-privacy-note{font:13px/1.5 system-ui,sans-serif;color:#5e6a73;margin:0}
+.site-evidence-form .site-hp{position:absolute;left:-9999px}
+@media(max-width:650px){.site-contribute-evidence{margin-top:34px;padding:24px 18px 28px}}
+</style>
 </head><body>
 <nav class="site-language-bar" aria-label="Language"><div class="site-language-bar-inner"><a data-site-lang="cs" href="https://translate.google.com/translate?sl=en&tl=cs&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Fconnected-timeline.html">Čeština</a><a data-site-lang="en" class="current" href="connected-timeline.html">English</a><a data-site-lang="de" href="https://translate.google.com/translate?sl=en&tl=de&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Fconnected-timeline.html">Deutsch</a></div></nav>
 <header><div class="kicker">Chronological synthesis</div><h1>Connected historical timeline</h1><p class="lede">The station, factory, hotel, people and property records belong to overlapping histories. This timeline places their documented points beside one another without filling the gaps between them.</p></header><main><div class="key"><span class="archive-chip archive-chip--primary">Documented</span><span class="archive-chip archive-chip--secondary">Reported / secondary</span><span class="archive-chip archive-chip--working">Interpretation</span><span class="archive-chip archive-chip--open">Unresolved link</span></div><p class="caution"><strong>How to read this page:</strong> proximity in time does not prove causation. Where two histories appear to meet, the note identifies the record still needed to demonstrate the connection.</p>
@@ -33,7 +47,22 @@
 <section class="era"><h2>Railway closure, survival and research</h2>
 <article class="moment"><div class="moment__date">1992–1995</div><div><h3>Late railway history and closure</h3><p>The station chronology records important late twentieth-century operational changes and the end of regular station use.</p><p class="links"><span class="archive-chip archive-chip--primary">Documented chronology</span> <a href="stanice-zbiroh.html">Station history</a></p></div></article>
 <article class="moment"><div class="moment__date">After 2012</div><div><h3>Survival, private stewardship and research</h3><p>The building’s survival, later private ownership and collection of historical evidence belong to a new phase. Present stewardship enables research but does not determine the interpretation of the past; exact transfer documentation is still to be added to the station chronology.</p><p class="links"><span class="archive-chip archive-chip--working">Living archive · transfer record sought</span> <a href="archive-guide.html">Editorial position</a> · <a href="stanice-zbiroh.html">Station chronology</a> · <a href="source-catalogue.html">Source catalogue</a></p></div></article></section>
-</main><footer></footer><script src="archive.js"></script>
+</main>
+<section class="site-contribute-evidence" id="contribute-evidence">
+<h2>Contribute evidence · Přispějte důkazy · Belege beitragen</h2>
+<p>Have a document, photograph, correction, archival reference, source link or historical lead? Send it directly to the Stanice Zbiroh Historical Research Archive. · Máte dokument, fotografii, opravu, archivní odkaz, zdroj nebo historickou stopu? Pošlete ji přímo do Historického výzkumného archivu Stanice Zbiroh. · Haben Sie ein Dokument, Foto, eine Korrektur, Archivangabe, Quellenangabe oder historische Spur? Senden Sie sie direkt an das Historische Forschungsarchiv Stanice Zbiroh.</p>
+<form class="site-evidence-form" action="https://formsubmit.co/zbirohstation@gmail.com" method="POST">
+<input type="hidden" name="_subject" value="New evidence submission — Stanice Zbiroh Archive">
+<input type="hidden" name="_template" value="table">
+<input type="text" name="_honey" class="site-hp" tabindex="-1" autocomplete="off">
+<label>Name / Jméno / Name (optional)<input type="text" name="name"></label>
+<label>Email (optional)<input type="email" name="email"></label>
+<label>Information, source or historical lead / Informace, zdroj nebo historická stopa / Information, Quelle oder historische Spur<textarea name="message" required></textarea></label>
+<button type="submit">Send evidence · Odeslat důkaz · Beleg senden</button>
+<p class="site-privacy-note">Submissions are processed by FormSubmit and forwarded to the archive email account; complete technical anonymity cannot be guaranteed.</p>
+</form>
+</section>
+<footer></footer><script src="archive.js"></script>
 <script id="site-language-bar-script">
 (function(){
   const bar=document.querySelector('.site-language-bar');
