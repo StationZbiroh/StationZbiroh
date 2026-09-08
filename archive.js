@@ -177,6 +177,7 @@
       '1862':[['connected-timeline.html','Connected timeline']],
       'After the mid-19th century · documented by 1869–1881 map':[['source-catalogue.html','Source catalogue']],
       '1868–1875':[['strousberg.html','Strousberg and Zbirow'],['strousberg-zbirow-report.html','1875 industrial report']],
+      '1 March 1875':[['strousberg-zbirow-report.html','Goldschmidt report'],['strousberg-memoir-summary.html','Memoir context'],['emil-goldschmied.html','Goldschmidt / Goldschmied distinction']],
       '1875':[['strousberg.html','Strousberg overview'],['economist-strousberg-1875.html','The Economist, 1875'],['property-rights.html','Property aftermath']],
       '1879':[['hotel-borek.html','Hotel Borek chronology'],['goldschmied-borek-1879.html','1879 cadastral evidence']],
       'Before the new station':[['hotel-borek.html','Hotel Borek'],['hotel-borek-interior-postcard.html','Hotel interior evidence']],
