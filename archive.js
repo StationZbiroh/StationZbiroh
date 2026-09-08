@@ -2,7 +2,7 @@
   const pages={
     station:[['stanice-zbiroh.html','Master station timeline'],['stanice-zbiroh-cs.html','Historie stanice · česky'],['stanice-zbiroh-de.html','Bahnhofsgeschichte · Deutsch'],['hotel-borek.html','Hotel Borek'],['hotel-borek-interior-postcard.html','Hotel interior postcard'],['hotel-borek-postcard-text.html','Postcard text and dating'],['oak-tree.html','The oak tree']],
     industry:[['factory-catalogue.html','Factory catalogue'],['brandeis-eisenschimmel-factory-images.html','Factory images'],['borek-silo-documents.html','Silo documents'],['borek-aurich-silo-research.html','Aurich and the silo question'],['strousberg.html','Strousberg overview'],['strousberg-zbirow-report.html','1875 industrial report'],['strousberg-memoir-summary.html','Memoir summary'],['strousberg-reputation.html','Reputation and evidence'],['economist-strousberg-1875.html','The Economist, 1875'],['property-rights.html','Property-rights research']],
-    people:[['emil-brandeis.html','Emil Brandeis'],['emil-goldschmied.html','Emil and Ludwig Goldschmied'],['goldschmied-borek-1879.html','Goldschmied and Borek, 1879'],['strousberg.html','Bethel Henry Strousberg']],
+    people:[['emil-brandeis.html','Emil Brandeis'],['people.html','Josef Švejkovský — Kařez tool manufacturer'],['emil-goldschmied.html','Emil and Ludwig Goldschmied'],['goldschmied-borek-1879.html','Goldschmied and Borek, 1879'],['strousberg.html','Bethel Henry Strousberg']],
     sources:[['connected-timeline.html','Connected historical timeline'],['source-catalogue.html','Source catalogue'],['research-register.html','Page-by-page research register'],['people-and-organisations.html','People and organisations'],['archive-guide.html','Archive guide'],['research-index.json','Machine-readable research index'],['METHODOLOGY.md','Research methodology'],['research/TIMELINE.md','Working timeline'],['research/BOREK_INDUSTRIAL_HISTORY.md','Industrial research notes'],['research/HOTEL-BOREK.md','Hotel Borek notes']]
   };
   const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
@@ -13,6 +13,7 @@
     'research-register.html':['Research control','Page-by-page assessment'],
     'connected-timeline.html':['Historical synthesis','Documented and reported chronology'],
     'people-and-organisations.html':['Research directory','Names, variants and evidence status'],
+    'people.html':['People','Josef Švejkovský · documented 7 June 1945'],
     'stanice-zbiroh.html':['Station & landscape','Evidence-led chronology'],
     'stanice-zbiroh-cs.html':['Station & landscape','Evidence-led chronology · Czech'],
     'stanice-zbiroh-de.html':['Station & landscape','Evidence-led chronology · German'],
