@@ -1,6 +1,6 @@
 (function(){
   const pages={
-    station:[['stanice-zbiroh.html','Station history'],['stanice-zbiroh-cs.html','Historie stanice · česky'],['stanice-zbiroh-de.html','Bahnhofsgeschichte · Deutsch'],['hotel-borek.html','Hotel Borek'],['hotel-borek-interior-postcard.html','Hotel interior postcard'],['hotel-borek-postcard-text.html','Postcard text and dating'],['oak-tree.html','The oak tree']],
+    station:[['stanice-zbiroh.html','Master station timeline'],['stanice-zbiroh-cs.html','Historie stanice · česky'],['stanice-zbiroh-de.html','Bahnhofsgeschichte · Deutsch'],['hotel-borek.html','Hotel Borek'],['hotel-borek-interior-postcard.html','Hotel interior postcard'],['hotel-borek-postcard-text.html','Postcard text and dating'],['oak-tree.html','The oak tree']],
     industry:[['factory-catalogue.html','Factory catalogue'],['brandeis-eisenschimmel-factory-images.html','Factory images'],['borek-silo-documents.html','Silo documents'],['borek-aurich-silo-research.html','Aurich and the silo question'],['strousberg.html','Strousberg overview'],['strousberg-zbirow-report.html','1875 industrial report'],['strousberg-memoir-summary.html','Memoir summary'],['strousberg-reputation.html','Reputation and evidence'],['economist-strousberg-1875.html','The Economist, 1875'],['property-rights.html','Property-rights research']],
     people:[['emil-brandeis.html','Emil Brandeis'],['emil-goldschmied.html','Emil and Ludwig Goldschmied'],['goldschmied-borek-1879.html','Goldschmied and Borek, 1879'],['strousberg.html','Bethel Henry Strousberg']],
     sources:[['connected-timeline.html','Connected historical timeline'],['source-catalogue.html','Source catalogue'],['research-register.html','Page-by-page research register'],['archive-guide.html','Archive guide'],['METHODOLOGY.md','Research methodology'],['research/TIMELINE.md','Working timeline'],['research/BOREK_INDUSTRIAL_HISTORY.md','Industrial research notes'],['research/HOTEL-BOREK.md','Hotel Borek notes']]
@@ -172,4 +172,42 @@
   document.addEventListener('click',e=>{if(!e.target.closest('.archive-nav'))document.querySelectorAll('.archive-nav details').forEach(d=>d.open=false)});
   const footer=document.querySelector('footer');if(footer){footer.className='archive-site-footer';footer.innerHTML='<nav aria-label="Archive information"><a href="archive-guide.html">Archive guide</a><a href="source-catalogue.html">Source catalogue</a><a href="METHODOLOGY.md">Methodology</a><a href="https://github.com/stationzbiroh/StationZbiroh">Version history</a></nav><div><strong>Stanice Zbiroh Historical Research Archive</strong><br>Independent public research maintained at the former Zbiroh station. Evidence, corrections and contradictory findings are retained as the archive develops.</div>'}
   if(main&&connections[current]){const section=document.createElement('section');section.className='archive-connections';section.setAttribute('aria-labelledby','connections-heading');section.innerHTML=`<h2 id="connections-heading">Connections within the archive</h2><p class="archive-connections__intro">These notes show where this page meets other parts of the research. “Possible” connections remain questions until supported by the necessary records.</p>${connections[current].map(([type,href,copy])=>`<div class="archive-connection"><div class="archive-connection__type">${type}</div><p>${copy} <a href="${href}">Follow this connection →</a></p></div>`).join('')}`;const contribute=main.querySelector('section.contribute');if(contribute)main.insertBefore(section,contribute);else main.appendChild(section)}
+  if(current==='stanice-zbiroh.html'){
+    const timelineLinks={
+      '1862':[['connected-timeline.html','Connected timeline']],
+      'After the mid-19th century · documented by 1869–1881 map':[['source-catalogue.html','Source catalogue']],
+      '1868–1875':[['strousberg.html','Strousberg and Zbirow'],['strousberg-zbirow-report.html','1875 industrial report']],
+      '1875':[['strousberg.html','Strousberg overview'],['economist-strousberg-1875.html','The Economist, 1875'],['property-rights.html','Property aftermath']],
+      '1879':[['hotel-borek.html','Hotel Borek chronology'],['goldschmied-borek-1879.html','1879 cadastral evidence']],
+      'Before the new station':[['hotel-borek.html','Hotel Borek'],['hotel-borek-interior-postcard.html','Hotel interior evidence']],
+      'After Strousberg · exact dates not yet established':[['hotel-borek.html','Tichý and Brandeis ownership account'],['property-rights.html','Property research']],
+      '1881':[['emil-brandeis.html','Brandeis family and factory timeline'],['property-rights.html','Factory ownership questions']],
+      '1887':[['emil-brandeis.html','Brandeis factory chronology'],['factory-catalogue.html','Later factory evidence']],
+      '1907':[['emil-brandeis.html','Father-and-son identity hypothesis']],
+      'By 1908 · continuing into the early Czechoslovak period':[['emil-brandeis.html','1908 Brandeis evidence'],['brandeis-eisenschimmel-factory-images.html','Factory images']],
+      'October 1911':[['emil-brandeis.html','Factory and station chronology'],['source-catalogue.html','Station source group']],
+      '1911–1912 · another source gives 1912–1913':[['connected-timeline.html','Compare the full chronology']],
+      '1913':[['hotel-borek.html','Station settlement context']],
+      'Early 20th century · exact postcard date under research':[['hotel-borek.html','Hotel and station'],['hotel-borek-postcard-text.html','Postcard dating evidence']],
+      '1918 onward':[['factory-catalogue.html','Factory in the Czechoslovak period']],
+      '1919':[['factory-catalogue.html','1919 company source'],['emil-brandeis.html','Brandeis timeline']],
+      'c. 1920':[['factory-catalogue.html','Corporate combination evidence'],['emil-brandeis.html','Company chronology']],
+      '1920s–1930s · exact catalogue date unresolved':[['factory-catalogue.html','Factory catalogue'],['brandeis-eisenschimmel-factory-images.html','Factory images'],['borek-silo-documents.html','Silo documents']],
+      '20th century':[['research-register.html','Outstanding station research']],
+      '1932':[['emil-brandeis.html','Factory after 1932'],['property-rights.html','Corporate and property questions']],
+      'Late 1930s':[['brandeis-eisenschimmel-factory-images.html','Factory image evidence'],['emil-brandeis.html','Later factory chronology']],
+      '1939–1945':[['emil-brandeis.html','Brandeis, persecution and wartime questions']],
+      '1952?':[['emil-brandeis.html','Factory-fire research question']],
+      '1953 and 1969':[['hotel-borek.html','Post-war hotel chronology']],
+      'October 1992':[['oak-tree.html','Changing station landscape']],
+      '26 October 1995':[['oak-tree.html','Landscape and protection history']],
+      'By 2012':[['property-rights.html','Separate railway-property chain']],
+      'Night of 27–28 April 2012':[['connected-timeline.html','Closure in the master chronology']],
+      '2012':[['property-rights.html','Railway property research']],
+      'After 2012':[['archive-guide.html','Present stewardship and editorial position']],
+      '2020':[['factory-catalogue.html','Catalogue and analysis'],['source-catalogue.html','Catalogue source record']],
+      'Present':[['connected-timeline.html','Connected historical timeline'],['research-register.html','Research priorities']]
+    };
+    main.querySelectorAll('.timeline article').forEach(article=>{const date=article.querySelector('.date')?.textContent.trim();const links=timelineLinks[date];if(!links)return;const p=document.createElement('p');p.className='timeline-links';p.innerHTML='<strong>Related archive branches:</strong> '+links.map(([href,label])=>`<a href="${href}">${label}</a>`).join(' · ');article.appendChild(p)});
+  }
 })();
