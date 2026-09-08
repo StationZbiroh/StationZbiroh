@@ -46,3 +46,19 @@ This is intended both to make the material accessible locally and internationall
 ## Status
 
 This repository is at the beginning of a long-term archival research project. Material will be added progressively and source citations improved as documents are catalogued.
+
+## Public archive structure
+
+The website is organized as a finding aid rather than a flat collection of essays:
+
+- **Overview** — the central question, principal evidence and documented timeline.
+- **Station & landscape** — station chronology, Hotel Borek, historical postcards and the oak tree.
+- **Industry & property** — factory records, silo material, Strousberg sources and ownership research.
+- **People** — biographical and identity research concerning Brandeis, Goldschmied and Strousberg.
+- **Sources & method** — the source catalogue, archive guide, methodology and working research notes.
+
+Existing page URLs are retained so that earlier citations and links continue to work.
+
+## Editorial responsibility
+
+The archive is maintained at the former Zbiroh station by its owner and restorer. Historical research is kept analytically separate from current property, planning and administrative questions. See [How to use this archive](archive-guide.html), the [Source catalogue](source-catalogue.html) and [Research methodology](METHODOLOGY.md).
