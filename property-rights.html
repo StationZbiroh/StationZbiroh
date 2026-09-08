@@ -16,8 +16,20 @@
 .site-evidence-form .site-hp{position:absolute;left:-9999px}
 @media(max-width:650px){.site-contribute-evidence{margin-top:34px;padding:24px 18px 28px}}
 </style>
+
+<style id="site-language-bar-style">
+.site-language-bar{position:sticky;top:0;z-index:1000;background:rgba(251,251,248,.97);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #d7dde2;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.site-language-bar-inner{max-width:960px;margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:center;gap:10px}
+.site-language-bar a{color:#39434a;text-decoration:none;font-weight:700;font-size:14px;padding:5px 9px;border-radius:3px;white-space:nowrap}
+.site-language-bar a.current{background:#17202a;color:#fff}
+.site-native-language-switch{display:none!important}
+[data-switch]{display:none!important}
+.languages,.language-switch,.language-switcher,.lang-switch,.lang-switcher,.lang-buttons,.language-buttons{display:none!important}
+@media(max-width:480px){.site-language-bar-inner{padding:9px 12px;gap:4px}.site-language-bar a{font-size:13px;padding:5px 7px}}
+</style>
 </head><body>
-<nav class="site-language-bar" aria-label="Language"><div class="site-language-bar-inner"><a href="#cs">Čeština</a> | <a class="current" href="#en">English</a> | <a href="#de">Deutsch</a></div></nav>
+<nav class="site-language-bar" aria-label="Language"><div class="site-language-bar-inner"><a data-site-lang="cs" href="https://translate.google.com/translate?sl=en&tl=cs&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Fproperty-rights.html">Čeština</a><a data-site-lang="en" class="current" href="property-rights.html">English</a><a data-site-lang="de" href="https://translate.google.com/translate?sl=en&tl=de&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Fproperty-rights.html">Deutsch</a></div></nav>
+
 <div class="entitybar"><div class="entitybar-inner"><span class="entitybar-label">Archive pages</span><a href="index.html">Archive</a><a href="stanice-zbiroh.html">Stanice Zbiroh</a><a href="hotel-borek.html">Hotel Borek</a><a href="strousberg.html">Strousberg</a><a href="strousberg-memoir-summary.html">Memoir Summary</a><a href="strousberg-zbirow-report.html">1875 Report</a><a href="factory-catalogue.html">Factory Catalogue</a><a href="brandeis-eisenschimmel-factory-images.html">Factory Images</a><a href="oak-tree.html">Oak Tree</a><a href="emil-brandeis.html">Emil Brandeis</a><a href="emil-goldschmied.html">Emil &amp; Ludwig Goldschmied</a><a class="current" href="property-rights.html">Property Rights</a></div></div>
 <header><div class="kicker">Stanice Zbiroh · Investigation</div><h1>Property Rights</h1><p class="lede">Who actually owned what? This investigation follows the fragmentation of Bethel Henry Strousberg's landed, industrial and railway-related property system after his collapse in 1875, property by property, and asks what contemporary document proves each transfer.</p></header>
 <main>
@@ -49,4 +61,30 @@
 </form>
 </section>
 <footer>Stanice Zbiroh Historical Research Archive · Working investigation · Property rights and title chains remain subject to documentary verification.</footer><script src="archive.js"></script>
+
+<script id="site-language-bar-script">
+(function(){
+  const bar=document.querySelector('.site-language-bar');
+  if(!bar) return;
+  bar.querySelectorAll('a[data-site-lang]').forEach(a=>{
+    a.addEventListener('click',function(e){
+      const lang=this.dataset.siteLang;
+      const nativeButton=document.querySelector('[data-switch="'+lang+'"]');
+      if(nativeButton){
+        e.preventDefault();
+        nativeButton.click();
+        bar.querySelectorAll('a').forEach(x=>x.classList.remove('current'));
+        this.classList.add('current');
+        try{history.replaceState(null,'',location.pathname+'#'+lang)}catch(_){}
+      }
+    });
+  });
+  const hash=(location.hash||'').replace('#','');
+  if(['cs','en','de'].includes(hash)){
+    const nativeButton=document.querySelector('[data-switch="'+hash+'"]');
+    const link=bar.querySelector('[data-site-lang="'+hash+'"]');
+    if(nativeButton&&link){nativeButton.click();bar.querySelectorAll('a').forEach(x=>x.classList.remove('current'));link.classList.add('current');}
+  }
+})();
+</script>
 </body></html>

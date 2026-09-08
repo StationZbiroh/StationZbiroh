@@ -19,8 +19,20 @@
 .site-evidence-form .site-hp{position:absolute;left:-9999px}
 @media(max-width:650px){.site-contribute-evidence{margin-top:34px;padding:24px 18px 28px}}
 </style>
+
+<style id="site-language-bar-style">
+.site-language-bar{position:sticky;top:0;z-index:1000;background:rgba(251,251,248,.97);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #d7dde2;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.site-language-bar-inner{max-width:960px;margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:center;gap:10px}
+.site-language-bar a{color:#39434a;text-decoration:none;font-weight:700;font-size:14px;padding:5px 9px;border-radius:3px;white-space:nowrap}
+.site-language-bar a.current{background:#17202a;color:#fff}
+.site-native-language-switch{display:none!important}
+[data-switch]{display:none!important}
+.languages,.language-switch,.language-switcher,.lang-switch,.lang-switcher,.lang-buttons,.language-buttons{display:none!important}
+@media(max-width:480px){.site-language-bar-inner{padding:9px 12px;gap:4px}.site-language-bar a{font-size:13px;padding:5px 7px}}
+</style>
 </head><body>
-<nav class="site-language-bar"><div class="site-language-bar-inner"><a href="https://translate.google.com/translate?sl=en&tl=cs&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Femil-goldschmied.html">Čeština</a><a class="current" href="emil-goldschmied.html">English</a><a href="https://translate.google.com/translate?sl=en&tl=de&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Femil-goldschmied.html">Deutsch</a></div></nav>
+<nav class="site-language-bar" aria-label="Language"><div class="site-language-bar-inner"><a data-site-lang="cs" href="https://translate.google.com/translate?sl=en&tl=cs&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Femil-goldschmied.html">Čeština</a><a data-site-lang="en" class="current" href="emil-goldschmied.html">English</a><a data-site-lang="de" href="https://translate.google.com/translate?sl=en&tl=de&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Femil-goldschmied.html">Deutsch</a></div></nav>
+
 <div class="entitybar"><div class="entitybar-inner"><a href="index.html">Archive</a><a href="strousberg.html">Strousberg</a><a href="emil-brandeis.html">Emil Brandeis</a><a href="strousberg-zbirow-report.html">1875 Report</a><a href="hotel-borek.html">Hotel Borek</a><a href="oak-tree.html">Oak Tree</a><a class="current" href="emil-goldschmied.html">Emil &amp; Ludwig Goldschmied</a></div></div>
 <header><div class="kicker">Stanice Zbiroh · People · Research in progress</div><h1>Emil &amp; Ludwig Goldschmied</h1><p class="lede">An evidence-led investigation into the Goldschmied family and their possible place in the ownership, financing and industrial history of Zbiroh and Borek after the collapse of Bethel Henry Strousberg’s enterprise.</p></header><main>
 <section class="note"><h2>The question</h2><p>The surviving evidence places several similar names around the post-Strousberg story, but it does not yet establish a single chain between them. Strousberg’s 1875 Zbirow assessment was addressed to <strong>H. v. Goldschmidt &amp; Co., Vienna</strong>. Separate cadastral/property material appears to contain the names <strong>Ludwig Goldschmied</strong> and <strong>Emil Goldschmied</strong>, together with a third person whose identity and role require verification. Later documents establish an <strong>Emil Goldschmied</strong> as a Prague VII businessman. This page documents those clues without presuming that Goldschmidt and Goldschmied were related, or that appearance in a property record proves ownership or operation of the Borek factory.</p></section>
@@ -50,4 +62,30 @@
 </form>
 </section>
 <footer>Stanice Zbiroh Historical Research Archive · Research page in progress · <a href="images/emil-goldschmied/">Source image folder</a></footer><script src="archive.js"></script>
+
+<script id="site-language-bar-script">
+(function(){
+  const bar=document.querySelector('.site-language-bar');
+  if(!bar) return;
+  bar.querySelectorAll('a[data-site-lang]').forEach(a=>{
+    a.addEventListener('click',function(e){
+      const lang=this.dataset.siteLang;
+      const nativeButton=document.querySelector('[data-switch="'+lang+'"]');
+      if(nativeButton){
+        e.preventDefault();
+        nativeButton.click();
+        bar.querySelectorAll('a').forEach(x=>x.classList.remove('current'));
+        this.classList.add('current');
+        try{history.replaceState(null,'',location.pathname+'#'+lang)}catch(_){}
+      }
+    });
+  });
+  const hash=(location.hash||'').replace('#','');
+  if(['cs','en','de'].includes(hash)){
+    const nativeButton=document.querySelector('[data-switch="'+hash+'"]');
+    const link=bar.querySelector('[data-site-lang="'+hash+'"]');
+    if(nativeButton&&link){nativeButton.click();bar.querySelectorAll('a').forEach(x=>x.classList.remove('current'));link.classList.add('current');}
+  }
+})();
+</script>
 </body></html>
