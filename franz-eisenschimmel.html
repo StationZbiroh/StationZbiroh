@@ -15,7 +15,20 @@
 .site-evidence-form .site-hp{position:absolute;left:-9999px}
 @media(max-width:650px){.site-contribute-evidence{margin-top:34px;padding:24px 18px 28px}}
 </style>
-</head><body><nav class="site-language-bar" aria-label="Language"><div class="site-language-bar-inner"><a data-site-lang="cs" href="https://translate.google.com/translate?sl=en&amp;tl=cs&amp;u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Ffranz-eisenschimmel.html">Čeština</a><a data-site-lang="en" class="current" href="franz-eisenschimmel.html">English</a><a data-site-lang="de" href="https://translate.google.com/translate?sl=en&amp;tl=de&amp;u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Ffranz-eisenschimmel.html">Deutsch</a></div></nav>
+
+<style id="site-language-bar-style">
+.site-language-bar{position:sticky;top:0;z-index:1000;background:rgba(251,251,248,.97);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #d7dde2;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.site-language-bar-inner{max-width:960px;margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:center;gap:10px}
+.site-language-bar a{color:#39434a;text-decoration:none;font-weight:700;font-size:14px;padding:5px 9px;border-radius:3px;white-space:nowrap}
+.site-language-bar a.current{background:#17202a;color:#fff}
+.site-native-language-switch{display:none!important}
+[data-switch]{display:none!important}
+.languages,.language-switch,.language-switcher,.lang-switch,.lang-switcher,.lang-buttons,.language-buttons{display:none!important}
+@media(max-width:480px){.site-language-bar-inner{padding:9px 12px;gap:4px}.site-language-bar a{font-size:13px;padding:5px 7px}}
+</style>
+</head><body>
+<nav class="site-language-bar" aria-label="Language"><div class="site-language-bar-inner"><a data-site-lang="cs" href="https://translate.google.com/translate?sl=en&tl=cs&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Ffranz-eisenschimmel.html">Čeština</a><a data-site-lang="en" class="current" href="franz-eisenschimmel.html">English</a><a data-site-lang="de" href="https://translate.google.com/translate?sl=en&tl=de&u=https%3A%2F%2Fstationzbiroh.github.io%2FStationZbiroh%2Ffranz-eisenschimmel.html">Deutsch</a></div></nav>
+
 <header><div class="kicker">Stanice Zbiroh · People</div><h1>Franz Eisenschimmel</h1><p class="lede">An engineer, industrial founder and namesake of Franz Eisenschimmel &amp; Co., the Roudnice agricultural-machinery enterprise whose production became part of the combined Brandeis–Eisenschimmel works at Borek.</p></header><main>
 <section class="facts"><div class="fact"><div class="label">Profession</div><p>Engineer and agricultural-machinery manufacturer</p></div><div class="fact"><div class="label">Family</div><p>Son of Emil and Rosa Eisenschimmel; nephew of Ludwig; first cousin of Dr Valtr Eisenschimmel</p></div><div class="fact"><div class="label">Company</div><p>Franz Eisenschimmel &amp; Co., Roudnice nad Labem</p></div><div class="fact"><div class="label">Emigration</div><p>Left Europe with his wife Rosalie in 1914; became a United States citizen in 1926</p></div></section>
 <section><h2>An engineer builds a machinery works</h2><p>The Mladá Boleslav family history identifies Franz as the eldest child of Emil Eisenschimmel and Rosa Eislerová and records that he became an engineer. A specialist history of agricultural machinery dates the foundation of Franz Eisenschimmel &amp; Co. in Roudnice nad Labem to approximately 1905.</p><p>The works was substantial: three large halls and a machine hall with a boiler house. Its documented product range included chaff cutters, horse-driven gears, beet cutters, and wine and fruit presses. Creating an enterprise of this scale—and placing his own name upon it—is Franz’s clearest documented industrial achievement.</p></section>
@@ -39,4 +52,31 @@
 <p class="site-privacy-note">Submissions are processed by FormSubmit and forwarded to the archive email account; complete technical anonymity cannot be guaranteed.</p>
 </form>
 </section>
-<footer></footer><script src="archive.js"></script><script id="site-language-bar-script">(function(){const bar=document.querySelector('.site-language-bar');if(!bar)return;bar.querySelectorAll('a[data-site-lang]').forEach(a=>{a.addEventListener('click',function(e){const lang=this.dataset.siteLang;const nativeButton=document.querySelector('[data-switch="'+lang+'"]');if(nativeButton){e.preventDefault();nativeButton.click();bar.querySelectorAll('a').forEach(x=>x.classList.remove('current'));this.classList.add('current')}})})})();</script></body></html>
+<footer></footer><script src="archive.js"></script>
+
+<script id="site-language-bar-script">
+(function(){
+  const bar=document.querySelector('.site-language-bar');
+  if(!bar) return;
+  bar.querySelectorAll('a[data-site-lang]').forEach(a=>{
+    a.addEventListener('click',function(e){
+      const lang=this.dataset.siteLang;
+      const nativeButton=document.querySelector('[data-switch="'+lang+'"]');
+      if(nativeButton){
+        e.preventDefault();
+        nativeButton.click();
+        bar.querySelectorAll('a').forEach(x=>x.classList.remove('current'));
+        this.classList.add('current');
+        try{history.replaceState(null,'',location.pathname+'#'+lang)}catch(_){}
+      }
+    });
+  });
+  const hash=(location.hash||'').replace('#','');
+  if(['cs','en','de'].includes(hash)){
+    const nativeButton=document.querySelector('[data-switch="'+hash+'"]');
+    const link=bar.querySelector('[data-site-lang="'+hash+'"]');
+    if(nativeButton&&link){nativeButton.click();bar.querySelectorAll('a').forEach(x=>x.classList.remove('current'));link.classList.add('current');}
+  }
+})();
+</script>
+</body></html>
