@@ -1,0 +1,334 @@
+{
+  "name": "Stanice Zbiroh Historical Research Archive",
+  "description": "Machine-readable index of pages, people and organisations in the archive.",
+  "updated": "2026-09-08",
+  "pages": [
+    {
+      "title": "Archive Guide — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/archive-guide.html",
+      "description": "How to navigate, evaluate and cite the evidence in the Stanice Zbiroh Historical Research Archive.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Emil Brandeis",
+        "Vendelín Hron"
+      ]
+    },
+    {
+      "title": "Borek, Richard Aurich and the silo question — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/borek-aurich-silo-research.html",
+      "description": "Research page on Železárna Borek's Aurich silo technology, patent questions, and the possible relationship between interwar agricultural machinery and later grain-storage use of the Borek site.",
+      "language": "en",
+      "entities": [
+        "Emil Brandeis",
+        "Franz Eisenschimmel",
+        "Richard Aurich",
+        "Vendelín Hron"
+      ]
+    },
+    {
+      "title": "Borek silo documents — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/borek-silo-documents.html",
+      "description": "Source-document gallery for Borek silo, green-fodder preservation and Richard Aurich research.",
+      "language": "en",
+      "entities": [
+        "Richard Aurich"
+      ]
+    },
+    {
+      "title": "Brandeis–Eisenschimmel Factory Images — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/brandeis-eisenschimmel-factory-images.html",
+      "description": "Primary-source photographs, postcards and clearly identified digital viewing copies associated with the Brandeis–Eisenschimmel factory at Borek.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Emil Brandeis",
+        "Franz Eisenschimmel"
+      ]
+    },
+    {
+      "title": "Connected Historical Timeline — Stanice Zbiroh Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/connected-timeline.html",
+      "description": "A connected chronology of the railway, Borek industry, property, people and landscape documented by the Stanice Zbiroh archive.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Emil Brandeis",
+        "Franz Eisenschimmel",
+        "Ludwig Goldschmied",
+        "H. v. Goldschmidt & Co.",
+        "Jakob Roubíček",
+        "Franz Rziha",
+        "Vendelín Hron"
+      ]
+    },
+    {
+      "title": "The Economist, 27 November 1875 — Strousberg and Zbirow",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/economist-strousberg-1875.html",
+      "description": "Transcription and editorial context for The Economist's contemporary 1875 report on Strousberg and the Zbirow industrial project.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg"
+      ]
+    },
+    {
+      "title": "Who was Emil Brandeis? — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/emil-brandeis.html",
+      "description": "Evidence-led timeline of the Brandeis family, the Borek factory, and the continuing identification of Emil Brandeis.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Emil Brandeis",
+        "Franz Eisenschimmel",
+        "H. v. Goldschmidt & Co.",
+        "Jakob Roubíček",
+        "Vendelín Hron"
+      ]
+    },
+    {
+      "title": "Emil & Ludwig Goldschmied — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/emil-goldschmied.html",
+      "description": "Evidence-led timeline investigating Emil and Ludwig Goldschmied and their possible place in the post-Strousberg Zbiroh-Borek property history.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Emil Brandeis",
+        "Emil Goldschmied",
+        "Ludwig Goldschmied",
+        "H. v. Goldschmidt & Co.",
+        "Jakob Roubíček",
+        "Vendelín Hron"
+      ]
+    },
+    {
+      "title": "Factory Catalogue — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/factory-catalogue.html",
+      "description": "Primary-source catalogue and working analysis for Železárna Borek a továrna hospodářských strojů, akc. spol. (Brandeis–Eisenschimmel).",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Emil Brandeis",
+        "Franz Eisenschimmel",
+        "Vendelín Hron"
+      ]
+    },
+    {
+      "title": "Goldschmied, Roubíček and Borek — 1879 evidence",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/goldschmied-borek-1879.html",
+      "description": "Evidence-led research page on the 1879 Goldschmied property record near Borek and the unresolved role of Jakob Roubíček before the Brandeis acquisition.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Emil Brandeis",
+        "Emil Goldschmied",
+        "Ludwig Goldschmied",
+        "Jakob Roubíček",
+        "Vendelín Hron"
+      ]
+    },
+    {
+      "title": "Hotel Borek Interior Postcard — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/hotel-borek-interior-postcard.html",
+      "description": "Research note on the historical Hotel Borek interior postcard and its documented 405 m² Great Hall.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg"
+      ]
+    },
+    {
+      "title": "More Details About the Hotel Borek Postcard — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/hotel-borek-postcard-text.html",
+      "description": "Detailed transcription, translation and postal analysis of the historical Hotel Borek postcard.",
+      "language": "en",
+      "entities": []
+    },
+    {
+      "title": "Hotel Borek — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/hotel-borek.html",
+      "description": "Evidence-led research into Hotel Borek and its relationship to Borek industry and Zbiroh station.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Emil Brandeis",
+        "Vendelín Hron",
+        "J. Tichý"
+      ]
+    },
+    {
+      "title": "Stanice Zbiroh — Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/index.html",
+      "description": "Evidence-led historical research on Zbiroh railway station, Borek industry, Hotel Borek, Bethel Henry Strousberg and the surrounding landscape.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Emil Brandeis",
+        "Franz Eisenschimmel",
+        "Ludwig Goldschmied",
+        "Vendelín Hron"
+      ]
+    },
+    {
+      "title": "The Oak Tree — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/oak-tree.html",
+      "description": "The documented story of the historic oak near the Prague–Plzeň road and the effort to secure formal protection for it.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg"
+      ]
+    },
+    {
+      "title": "People and Organisations — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/people-and-organisations.html",
+      "description": "Research directory of people, families, companies and institutions connected with Zbiroh station, Borek industry, Hotel Borek and the Strousberg industrial system.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Emil Brandeis",
+        "Franz Eisenschimmel",
+        "Ludwig Goldschmied",
+        "H. v. Goldschmidt & Co.",
+        "Jakob Roubíček",
+        "Franz Rziha",
+        "Richard Aurich",
+        "Jan Heindl",
+        "Vendelín Hron",
+        "Max Hopfengärtner",
+        "Josef Colloredo-Mannsfeld",
+        "J. Tichý",
+        "Mančík",
+        "Šlesinger"
+      ]
+    },
+    {
+      "title": "Property Rights — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/property-rights.html",
+      "description": "Evidence-led investigation of the fragmentation of Bethel Henry Strousberg's Zbiroh property and industrial system after 1875.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Emil Brandeis",
+        "Franz Eisenschimmel",
+        "Emil Goldschmied",
+        "Ludwig Goldschmied",
+        "H. v. Goldschmidt & Co.",
+        "Jakob Roubíček",
+        "Max Hopfengärtner",
+        "Josef Colloredo-Mannsfeld",
+        "J. Tichý"
+      ]
+    },
+    {
+      "title": "Research Register — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/research-register.html",
+      "description": "A page-by-page register of research purpose, evidence type and outstanding documentary work in the Stanice Zbiroh archive.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Emil Brandeis",
+        "Franz Eisenschimmel",
+        "Ludwig Goldschmied",
+        "H. v. Goldschmidt & Co.",
+        "Richard Aurich",
+        "Vendelín Hron"
+      ]
+    },
+    {
+      "title": "Source Catalogue — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/source-catalogue.html",
+      "description": "A finding aid for primary sources, contemporary publications, images and research records in the Stanice Zbiroh archive.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Emil Brandeis",
+        "Franz Eisenschimmel",
+        "Ludwig Goldschmied",
+        "Richard Aurich",
+        "Vendelín Hron"
+      ]
+    },
+    {
+      "title": "Stanice Zbiroh — Historický výzkumný archiv",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/stanice-zbiroh-cs.html",
+      "description": "Chronologická historie bývalé železniční stanice Zbiroh založená na pramenech: stavba, vlastnictví, provoz, krajina, uzavření a další osud.",
+      "language": "cs",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Jan Heindl",
+        "Vendelín Hron"
+      ]
+    },
+    {
+      "title": "Bahnhof Zbiroh — Historisches Forschungsarchiv",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/stanice-zbiroh-de.html",
+      "description": "Eine chronologische, quellenbasierte Geschichte des ehemaligen Bahnhofs Zbiroh: Bau, Eigentum, Personenverkehr, Landschaft, Schließung und Fortbestand.",
+      "language": "de",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Jan Heindl",
+        "Vendelín Hron"
+      ]
+    },
+    {
+      "title": "Stanice Zbiroh — Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/stanice-zbiroh.html",
+      "description": "A chronological evidence-led history of the former Zbiroh railway station, its building, landscape, ownership and changing use.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Emil Brandeis",
+        "Franz Eisenschimmel",
+        "Emil Goldschmied",
+        "Ludwig Goldschmied",
+        "H. v. Goldschmidt & Co.",
+        "Jakob Roubíček",
+        "Franz Rziha",
+        "Jan Heindl",
+        "Vendelín Hron",
+        "J. Tichý",
+        "Mančík",
+        "Šlesinger"
+      ]
+    },
+    {
+      "title": "Strousberg Memoirs — Summary — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/strousberg-memoir-summary.html",
+      "description": "English, Czech and German summary of Bethel Henry Strousberg's 1876 memoir Dr. Strousberg und sein Wirken, with particular attention to Zbirow, industry, railways and finance.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "H. v. Goldschmidt & Co.",
+        "Franz Rziha"
+      ]
+    },
+    {
+      "title": "Was Strousberg a fraudster — or a scapegoat? — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/strousberg-reputation.html",
+      "description": "Evidence-led comparison of contemporary and later accounts of Bethel Henry Strousberg's reputation, alleged 1847 conviction, memoir, financial collapse and post-1875 scapegoating.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Vendelín Hron"
+      ]
+    },
+    {
+      "title": "Bethel Henry Strousberg — Zbirow Industrial Report, 1875",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/strousberg-zbirow-report.html",
+      "description": "Source images, transcription and multilingual translation of a contemporary 1875 report on Strousberg's Zbirow industrial project.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "H. v. Goldschmidt & Co."
+      ]
+    },
+    {
+      "title": "Bethel Henry Strousberg — Stanice Zbiroh Historical Research Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/strousberg.html",
+      "description": "Evidence-led historical inventory of Bethel Henry Strousberg, Zbiroh, railway-carriage production, industrial infrastructure and the financial collapse of 1875.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "H. v. Goldschmidt & Co."
+      ]
+    }
+  ]
+}

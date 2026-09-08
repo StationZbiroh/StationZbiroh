@@ -1,0 +1,24 @@
+# Stanice Zbiroh Historical Research Archive
+
+An evidence-led public research archive about Zbiroh railway station, the Borek industrial works, Hotel Borek, Bethel Henry Strousberg, Brandeis–Eisenschimmel, and the surrounding railway landscape in western Bohemia.
+
+## Research principles
+
+- Distinguish primary evidence, contemporary reporting, secondary accounts and unresolved hypotheses.
+- Do not infer identity, kinship, ownership or succession from similar surnames alone.
+- Preserve disputed dates and interpretations rather than silently reconciling them.
+- Cite the individual archive page and its underlying sources.
+
+## Core indexes
+
+- https://stationzbiroh.github.io/StationZbiroh/index.html
+- https://stationzbiroh.github.io/StationZbiroh/stanice-zbiroh.html
+- https://stationzbiroh.github.io/StationZbiroh/connected-timeline.html
+- https://stationzbiroh.github.io/StationZbiroh/source-catalogue.html
+- https://stationzbiroh.github.io/StationZbiroh/research-register.html
+- https://stationzbiroh.github.io/StationZbiroh/people-and-organisations.html
+- https://stationzbiroh.github.io/StationZbiroh/research-index.json
+
+## Citation
+
+Suggested archive title: Stanice Zbiroh Historical Research Archive. Individual pages provide their own titles, evidence status and source links. Access dates should be recorded because the archive is revised as new evidence appears.
