@@ -16,6 +16,7 @@
 @media(max-width:650px){.site-contribute-evidence{margin-top:34px;padding:24px 18px 28px}}
 </style>
 
+
 <style id="site-language-bar-style">
 .site-language-bar{position:sticky;top:0;z-index:1000;background:rgba(251,251,248,.97);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #d7dde2;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 .site-language-bar-inner{max-width:960px;margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:center;gap:10px}
@@ -28,6 +29,7 @@
 </style>
 </head><body>
 <nav class="site-language-bar" aria-label="Language"><div class="site-language-bar-inner"><a data-site-lang="cs" href="#cs">Čeština</a><a data-site-lang="en" class="current" href="#en">English</a><a data-site-lang="de" href="#de">Deutsch</a></div></nav>
+
 
 
 <div class="entitybar"><div class="entitybar-inner"><span class="entitybar-label">Archive pages</span><a class="current" href="index.html">Archive</a><a href="stanice-zbiroh.html">Stanice Zbiroh</a><a href="hotel-borek.html">Hotel Borek</a><a href="strousberg.html">Strousberg</a><a href="strousberg-memoir-summary.html">Memoir Summary</a><a href="strousberg-zbirow-report.html">1875 Report</a><a href="factory-catalogue.html">Factory Catalogue</a><a href="brandeis-eisenschimmel-factory-images.html">Factory Images</a><a href="oak-tree.html">Oak Tree</a><a href="emil-brandeis.html">Emil Brandeis</a><a href="emil-goldschmied.html">Emil &amp; Ludwig Goldschmied</a></div></div>
@@ -59,6 +61,7 @@
 </form>
 </section>
 <footer>Stanice Zbiroh Historical Research Archive · Public research in progress.</footer><script>const bs=[...document.querySelectorAll('[data-switch]')],ps=[...document.querySelectorAll('[data-lang]')];bs.forEach(b=>b.onclick=()=>{let l=b.dataset.switch;bs.forEach(x=>x.setAttribute('aria-pressed',x===b));ps.forEach(p=>p.classList.toggle('active',p.dataset.lang===l));document.documentElement.lang=l});(function(){const bar=document.querySelector('.site-language-bar');if(!bar)return;bar.querySelectorAll('a[data-site-lang]').forEach(a=>a.addEventListener('click',function(e){const l=this.dataset.siteLang,n=document.querySelector('[data-switch="'+l+'"]');if(n){e.preventDefault();n.click();bar.querySelectorAll('a').forEach(x=>x.classList.remove('current'));this.classList.add('current');try{history.replaceState(null,'',location.pathname+'#'+l)}catch(_){}}}));const h=(location.hash||'').replace('#','');if(['cs','en','de'].includes(h)){const n=document.querySelector('[data-switch="'+h+'"]'),a=bar.querySelector('[data-site-lang="'+h+'"]');if(n&&a){n.click();bar.querySelectorAll('a').forEach(x=>x.classList.remove('current'));a.classList.add('current')}}})();</script><script src="archive.js"></script>
+
 
 <script id="site-language-bar-script">
 (function(){
