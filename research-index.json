@@ -1,7 +1,7 @@
 {
   "name": "Stanice Zbiroh Historical Research Archive",
   "description": "Machine-readable index of pages, people and organisations in the archive.",
-  "updated": "2026-09-08",
+  "updated": "2026-09-19",
   "pages": [
     {
       "title": "Archive Guide — Stanice Zbiroh Historical Research Archive",
@@ -60,6 +60,18 @@
         "Jakob Roubíček",
         "Franz Rziha",
         "Vendelín Hron"
+      ]
+    },
+    {
+      "title": "How Strousberg Bought Zbiroh, 1866–1868 — Stanice Zbiroh Archive",
+      "url": "https://stationzbiroh.github.io/StationZbiroh/strousberg-zbiroh-purchase.html",
+      "description": "A sourced reconstruction of the Austrian state's sale of the Zbiroh estate, the intermediary purchase by Samuel Simundt and Vinzenz Kirchmayer, and Strousberg's instalment and mortgage financing.",
+      "language": "en",
+      "entities": [
+        "Bethel Henry Strousberg",
+        "Samuel Simundt",
+        "Vinzenz Kirchmayer",
+        "Allgemeine Österreichische Boden-Credit-Anstalt"
       ]
     },
     {
