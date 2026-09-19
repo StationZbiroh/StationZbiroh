@@ -21,4 +21,4 @@ The source, date and provenance of individual documents should be recorded on th
 - **Authoritative record:** https://dspace.cuni.cz/handle/20.500.11956/75424
 - **Original download:** https://dspace.cuni.cz/bitstream/handle/20.500.11956/75424/BPTX_2013_2_11210_0_382817_0_150094.pdf?isAllowed=y&sequence=1
 
-This is a research-access copy downloaded from the Charles University Digital Repository. The authoritative record remains the university repository. Copyright and authorship remain with Barbora Turková; inclusion here does not imply transfer of rights.
+This is a preservation reference copy downloaded from the Charles University Digital Repository. It is retained solely against possible future loss of access caused by changed repository policy, links or technical systems. The authoritative record remains the university repository and should be cited first. Copyright and authorship remain with Barbora Turková; inclusion here does not imply transfer of rights or replacement of the official record.

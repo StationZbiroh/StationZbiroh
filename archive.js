@@ -1,23 +1,27 @@
 (function(){
   const pages={
-    overview:[['why-this-site.html','Why is this site here?']],
-    station:[['stanice-zbiroh.html','Master station timeline'],['stanice-zbiroh-cs.html','Historie stanice · česky'],['stanice-zbiroh-de.html','Bahnhofsgeschichte · Deutsch'],['hotel-borek.html','Hotel Borek'],['hotel-borek-interior-postcard.html','Hotel interior postcard'],['hotel-borek-postcard-text.html','Postcard text and dating'],['oak-tree.html','The oak tree'],['borek-airfield.html','Borek Airfield']],
-    industry:[['factory-catalogue.html','Factory catalogue'],['brandeis-eisenschimmel-factory-images.html','Factory images'],['borek-silo-documents.html','Silo documents'],['borek-aurich-silo-research.html','Aurich and the silo question'],['strousberg.html','Strousberg overview'],['strousberg-zbirow-report.html','1875 industrial report'],['strousberg-memoir-summary.html','Memoir summary'],['strousberg-reputation.html','Reputation and evidence'],['economist-strousberg-1875.html','The Economist, 1875'],['property-rights.html','Property-rights research']],
+    overview:[['index.html','Start here'],['why-this-site.html','Why is this site here?'],['connected-timeline.html','Main timeline']],
+    station:[['stanice-zbiroh.html','Detailed station chronology'],['stanice-zbiroh-cs.html','Historie stanice · česky'],['stanice-zbiroh-de.html','Bahnhofsgeschichte · Deutsch'],['hotel-borek.html','Hotel Borek'],['hotel-borek-interior-postcard.html','Hotel interior postcard'],['hotel-borek-postcard-text.html','Postcard text and dating'],['oak-tree.html','The oak tree'],['borek-airfield.html','Borek Airfield']],
+    industry:[['factory-catalogue.html','Factory catalogue'],['brandeis-eisenschimmel-factory-images.html','Factory images'],['borek-silo-documents.html','Silo documents'],['borek-aurich-silo-research.html','Aurich and the silo question'],['working-hypotheses.html','Working hypotheses'],['strousberg.html','Strousberg overview'],['strousberg-zbiroh-purchase.html','The 1868 Zbiroh purchase'],['strousberg-zbirow-report.html','1875 industrial report'],['strousberg-memoir-summary.html','Memoir summary'],['strousberg-reputation.html','Reputation and evidence'],['economist-strousberg-1875.html','The Economist, 1875'],['property-rights.html','Property-rights research']],
     people:[['emil-brandeis.html','Emil Brandeis'],['franz-eisenschimmel.html','Franz Eisenschimmel — engineer'],['valtr-eisenschimmel.html','Dr Valtr Eisenschimmel — chemist'],['people.html','Josef Švejkovský — Kařez tool manufacturer'],['emil-goldschmied.html','Emil and Ludwig Goldschmied'],['goldschmied-borek-1879.html','Goldschmied and Borek, 1879'],['strousberg.html','Bethel Henry Strousberg']],
-    sources:[['connected-timeline.html','Connected historical timeline'],['discovery-trail.html','Discovery trail'],['source-catalogue.html','Source catalogue'],['research-register.html','Page-by-page research register'],['people-and-organisations.html','People and organisations'],['archive-guide.html','Archive guide'],['research-index.json','Machine-readable research index'],['METHODOLOGY.md','Research methodology'],['research/TIMELINE.md','Working timeline'],['research/BOREK_INDUSTRIAL_HISTORY.md','Industrial research notes'],['research/HOTEL-BOREK.md','Hotel Borek notes']]
+    sources:[['source-catalogue.html','Source catalogue'],['discovery-trail.html','Discovery trail'],['research-register.html','Page-by-page research register'],['people-and-organisations.html','People and organisations'],['archive-guide.html','Archive guide'],['research-index.json','Machine-readable research index'],['METHODOLOGY.md','Research methodology'],['research/TIMELINE.md','Working timeline'],['research/BOREK_INDUSTRIAL_HISTORY.md','Industrial research notes'],['research/HOTEL-BOREK.md','Hotel Borek notes']]
   };
   const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
   const pageMeta={
     'why-this-site.html':['Why is this site here?','Archive purpose and scope'],
+    'working-hypotheses.html':['Research method','Testable interpretations'],
+    'strousberg-zbiroh-purchase.html':['Industry & property','1868 purchase and financing'],
+    'discovery-trail.html':['Research method','Corrections and discovery trail'],
     'archive-guide.html':['Archive orientation','Method and scope'],
     'source-catalogue.html':['Finding aid','Cataloguing in progress'],
     'research-register.html':['Research control','Page-by-page assessment'],
-    'connected-timeline.html':['Historical synthesis','Documented and reported chronology'],
+    'index.html':['Archive orientation','Start here'],
+    'connected-timeline.html':['Main timeline','Connected historical synthesis'],
     'people-and-organisations.html':['Research directory','Names, variants and evidence status'],
     'people.html':['People','Josef Švejkovský · documented 7 June 1945'],
     'valtr-eisenschimmel.html':['People','Documented biography · family connection'],
     'franz-eisenschimmel.html':['People','Engineer · industrial founder'],
-    'stanice-zbiroh.html':['Station & landscape','Evidence-led chronology'],
+    'stanice-zbiroh.html':['Station & landscape','Detailed station chronology'],
     'stanice-zbiroh-cs.html':['Station & landscape','Evidence-led chronology · Czech'],
     'stanice-zbiroh-de.html':['Station & landscape','Evidence-led chronology · German'],
     'hotel-borek.html':['Station & landscape','Evidence inventory'],
@@ -161,13 +165,33 @@
     'connected-timeline.html':[
       ['Source control','source-catalogue.html','The source catalogue identifies the documents behind this synthesis and records missing provenance.'],
       ['Unfinished work','research-register.html','The research register shows which chronological links still depend on deeds, company files, railway records or identity evidence.']
+    ],
+    'strousberg-zbiroh-purchase.html':[
+      ['Place in chronology','connected-timeline.html','The 1866 pledge and 1868 transactions begin the archive’s main account of industrial transformation.'],
+      ['Industrial outcome','strousberg.html','The Strousberg overview follows what the financed acquisition attempted to create at Zbiroh and Borek.'],
+      ['Property aftermath','property-rights.html','Later parcel and title research tests how the financed estate fragmented after the collapse.']
+    ],
+    'working-hypotheses.html':[
+      ['Chronological test','connected-timeline.html','Each hypothesis must fit the dated evidence in the main timeline and remain visibly provisional.'],
+      ['Source test','source-catalogue.html','The source catalogue separates records already found from documents still needed to prove a proposed connection.'],
+      ['Research priorities','research-register.html','The register converts hypotheses into specific archival searches and verification tasks.']
+    ],
+    'borek-airfield.html':[
+      ['Wider chronology','connected-timeline.html','The airfield belongs to the same landscape as the factory and railway and is integrated into the main timeline.'],
+      ['Factory comparison','brandeis-eisenschimmel-factory-images.html','The 1938–1946 aerial sequence adds physical evidence to the factory image record while leaving ownership and use unresolved.'],
+      ['Station landscape','stanice-zbiroh.html','The detailed station chronology records the military and industrial transformation visible beside the railway.']
+    ],
+    'discovery-trail.html':[
+      ['People identified','people-and-organisations.html','The authority directory records the people and family relationships established through the research trail.'],
+      ['Method','archive-guide.html','The archive guide explains why false starts and corrected claims are retained rather than erased.'],
+      ['Biographical result','valtr-eisenschimmel.html','The Valtr Eisenschimmel profile is a documented outcome of checking an initially inaccurate lead.']
     ]
   };
   const label={overview:'Overview',station:'Station & landscape',industry:'Industry & property',people:'People',sources:'Sources & method'};
   const menu=(key)=>`<details><summary>${label[key]}</summary><div class="archive-menu">${pages[key].map(([href,text])=>`<a href="${href}"${current===href.toLowerCase()?' aria-current="page"':''}>${text}</a>`).join('')}</div></details>`;
   const old=document.querySelector('.entitybar,.bar');
   const nav=document.createElement('nav');nav.className='archive-nav';nav.setAttribute('aria-label','Archive navigation');
-  nav.innerHTML=`<div class="archive-nav__inner"><a class="archive-brand" href="stanice-zbiroh.html">Stanice Zbiroh Archive</a><div class="archive-nav__groups">${menu('overview')}${menu('station')}${menu('industry')}${menu('people')}${menu('sources')}</div></div>`;
+  nav.innerHTML=`<div class="archive-nav__inner"><a class="archive-brand" href="index.html">Stanice Zbiroh Archive</a><div class="archive-nav__groups">${menu('overview')}${menu('station')}${menu('industry')}${menu('people')}${menu('sources')}</div></div>`;
   if(old) old.replaceWith(nav); else {const anchor=document.querySelector('.site-language-bar');(anchor||document.body.firstChild).after(nav)}
   const main=document.querySelector('main');if(main){main.id='main-content';main.tabIndex=-1}
   const skip=document.createElement('a');skip.className='archive-skip';skip.href='#main-content';skip.textContent='Skip to main content';document.body.prepend(skip);
@@ -180,9 +204,13 @@
   if(current==='stanice-zbiroh.html'){
     const timelineLinks={
       '1862':[['connected-timeline.html','Connected timeline']],
+      '1866':[['strousberg-zbiroh-purchase.html','Purchase and financing'],['connected-timeline.html','Main timeline']],
+      '20 June–21 July 1868':[['strousberg-zbiroh-purchase.html','State sale to Simundt and Kirchmayer'],['connected-timeline.html','Main timeline']],
+      '31 December 1868':[['strousberg-zbiroh-purchase.html','Strousberg acquisition'],['property-rights.html','Later property questions']],
       'After the mid-19th century · documented by 1869–1881 map':[['source-catalogue.html','Source catalogue']],
       '1868–1875':[['strousberg.html','Strousberg and Zbirow'],['strousberg-zbirow-report.html','1875 industrial report']],
       '1 March 1875':[['strousberg-zbirow-report.html','Goldschmidt report'],['strousberg-memoir-summary.html','Memoir context'],['emil-goldschmied.html','Goldschmidt / Goldschmied distinction']],
+      'From 28 October 1875':[['hotel-borek.html','Hotel Borek and the military stay'],['connected-timeline.html','Main timeline']],
       '1875':[['strousberg.html','Strousberg overview'],['economist-strousberg-1875.html','The Economist, 1875'],['property-rights.html','Property aftermath']],
       '1879':[['hotel-borek.html','Hotel Borek chronology'],['goldschmied-borek-1879.html','1879 cadastral evidence']],
       'Before the new station':[['hotel-borek.html','Hotel Borek'],['hotel-borek-interior-postcard.html','Hotel interior evidence']],
@@ -203,6 +231,10 @@
       '1932':[['emil-brandeis.html','Factory after 1932'],['property-rights.html','Corporate and property questions']],
       'Late 1930s':[['brandeis-eisenschimmel-factory-images.html','Factory image evidence'],['emil-brandeis.html','Later factory chronology']],
       '1939–1945':[['emil-brandeis.html','Brandeis, persecution and wartime questions']],
+      '1938–1946':[['borek-airfield.html','Aerial comparison'],['brandeis-eisenschimmel-factory-images.html','Factory image archive']],
+      '1939–1946':[['borek-airfield.html','Airfield disappearance and factory change']],
+      '30 July 1940':[['brandeis-eisenschimmel-factory-images.html','Factory image archive'],['emil-brandeis.html','Company and family chronology']],
+      '15 March 1939–7 June 1945':[['research-register.html','Wartime company-status research'],['people.html','Josef Švejkovský evidence']],
       '1952?':[['emil-brandeis.html','Factory-fire research question']],
       '1953 and 1969':[['hotel-borek.html','Post-war hotel chronology']],
       'October 1992':[['oak-tree.html','Changing station landscape']],
