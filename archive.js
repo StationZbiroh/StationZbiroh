@@ -201,11 +201,11 @@
       ['Biographical result','valtr-eisenschimmel.html','The Valtr Eisenschimmel profile is a documented outcome of checking an initially inaccurate lead.']
     ]
   };
-  const label={overview:'Overview',station:'Station & landscape',industry:'Industry & property',people:'People',sources:'Sources & method'};
+  const label={overview:'Overview',station:'Station & landscape',industry:'Industry & property',people:'People',sources:'Sources & method',timelines:'Object timelines'};
   const menu=(key)=>`<details><summary>${label[key]}</summary><div class="archive-menu">${pages[key].map(([href,text])=>`<a href="${href}"${current===href.toLowerCase()?' aria-current="page"':''}>${text}</a>`).join('')}</div></details>`;
   const old=document.querySelector('.entitybar,.bar');
   const nav=document.createElement('nav');nav.className='archive-nav';nav.setAttribute('aria-label','Archive navigation');
-  nav.innerHTML=`<div class="archive-nav__inner"><a class="archive-brand" href="index.html">Stanice Zbiroh Archive</a><div class="archive-nav__groups">${menu('overview')}${menu('station')}${menu('industry')}${menu('people')}${menu('sources')}</div></div>`;
+  nav.innerHTML=`<div class="archive-nav__inner"><a class="archive-brand" href="index.html">Stanice Zbiroh Archive</a><div class="archive-nav__groups">${menu('overview')}${menu('station')}${menu('industry')}${menu('people')}${menu('sources')}${menu('timelines')}</div></div>`;
   if(old) old.replaceWith(nav); else {const anchor=document.querySelector('.site-language-bar');(anchor||document.body.firstChild).after(nav)}
   const main=document.querySelector('main');if(main){main.id='main-content';main.tabIndex=-1}
   const skip=document.createElement('a');skip.className='archive-skip';skip.href='#main-content';skip.textContent='Skip to main content';document.body.prepend(skip);
