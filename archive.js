@@ -1,7 +1,7 @@
 (function(){
   const pages={
-    overview:[['index.html','Start here'],['why-this-site.html','Why is this site here?'],['connected-timeline.html','Main timeline']],
-    station:[['stanice-zbiroh.html','Detailed station chronology'],['stanice-zbiroh-cs.html','Historie stanice · česky'],['stanice-zbiroh-de.html','Bahnhofsgeschichte · Deutsch'],['hotel-borek.html','Hotel Borek'],['hotel-borek-interior-postcard.html','Hotel interior postcard'],['hotel-borek-postcard-text.html','Postcard text and dating'],['oak-tree.html','The oak tree'],['borek-airfield.html','Borek Airfield']],
+    overview:[['index.html','Start here'],['why-this-site.html','Why is this site here?'],['connected-timeline.html','Main timeline'],['object-timelines.html','Object timelines']],
+    station:[['object-timelines.html','All object timelines'],['stanice-zbiroh.html','Detailed station chronology'],['borek-factory.html','Borek factory'],['stanice-zbiroh-cs.html','Historie stanice · česky'],['stanice-zbiroh-de.html','Bahnhofsgeschichte · Deutsch'],['hotel-borek.html','Hotel Borek'],['hotel-borek-interior-postcard.html','Hotel interior postcard'],['hotel-borek-postcard-text.html','Postcard text and dating'],['oak-tree.html','The oak tree'],['borek-airfield.html','Borek Airfield']],
     industry:[['factory-catalogue.html','Factory catalogue'],['brandeis-eisenschimmel-factory-images.html','Factory images'],['borek-silo-documents.html','Silo documents'],['borek-aurich-silo-research.html','Aurich and the silo question'],['working-hypotheses.html','Working hypotheses'],['strousberg.html','Strousberg overview'],['strousberg-zbiroh-purchase.html','The 1868 Zbiroh purchase'],['strousberg-zbirow-report.html','1875 industrial report'],['strousberg-memoir-summary.html','Memoir summary'],['strousberg-reputation.html','Reputation and evidence'],['economist-strousberg-1875.html','The Economist, 1875'],['property-rights.html','Property-rights research']],
     people:[['emil-brandeis.html','Emil Brandeis'],['franz-eisenschimmel.html','Franz Eisenschimmel — engineer'],['valtr-eisenschimmel.html','Dr Valtr Eisenschimmel — chemist'],['people.html','Josef Švejkovský — Kařez tool manufacturer'],['emil-goldschmied.html','Emil and Ludwig Goldschmied'],['goldschmied-borek-1879.html','Goldschmied and Borek, 1879'],['strousberg.html','Bethel Henry Strousberg']],
     sources:[['source-catalogue.html','Source catalogue'],['discovery-trail.html','Discovery trail'],['research-register.html','Page-by-page research register'],['people-and-organisations.html','People and organisations'],['archive-guide.html','Archive guide'],['research-index.json','Machine-readable research index'],['METHODOLOGY.md','Research methodology'],['research/TIMELINE.md','Working timeline'],['research/BOREK_INDUSTRIAL_HISTORY.md','Industrial research notes'],['research/HOTEL-BOREK.md','Hotel Borek notes']]
@@ -17,6 +17,8 @@
     'research-register.html':['Research control','Page-by-page assessment'],
     'index.html':['Archive orientation','Start here'],
     'connected-timeline.html':['Main timeline','Connected historical synthesis'],
+    'object-timelines.html':['Places & landscape','Object timeline index'],
+    'borek-factory.html':['Industry & landscape','Object timeline · Borek factory'],
     'people-and-organisations.html':['Research directory','Names, variants and evidence status'],
     'people.html':['People','Josef Švejkovský · documented 7 June 1945'],
     'valtr-eisenschimmel.html':['People','Documented biography · family connection'],
@@ -162,7 +164,18 @@
       ['Source control','source-catalogue.html','The source catalogue records the principal items and collections to which the page-level priorities refer.'],
       ['Reading rules','archive-guide.html','The archive guide explains the evidential language used throughout this register.']
     ],
+    'object-timelines.html':[
+      ['Master chronology','connected-timeline.html','The connected timeline shows how events from separate object and person timelines overlap.'],
+      ['Factory object','borek-factory.html','The Borek factory page consolidates industrial events previously distributed across several research pages.']
+    ],
+    'borek-factory.html':[
+      ['Transport landscape','stanice-zbiroh.html','The factory and station histories intersect through transport, logistics and the changing industrial landscape.'],
+      ['Neighbouring object','hotel-borek.html','Hotel Borek has its own chronology and should not be collapsed into the factory ownership chain.'],
+      ['Aerial evidence','borek-airfield.html','The airfield timeline preserves the 1938–1946 aerial evidence for physical change beside the factory.'],
+      ['People','emil-brandeis.html','The Brandeis biography connects people to the factory without using company evidence alone to settle personal identity.']
+    ],
     'connected-timeline.html':[
+      ['Object timelines','object-timelines.html','Use the object index to move from this synthesis into the chronology of a single place or physical feature.'],
       ['Source control','source-catalogue.html','The source catalogue identifies the documents behind this synthesis and records missing provenance.'],
       ['Unfinished work','research-register.html','The research register shows which chronological links still depend on deeds, company files, railway records or identity evidence.']
     ],
