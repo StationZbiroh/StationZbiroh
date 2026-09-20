@@ -4,7 +4,7 @@
     station:[['stanice-zbiroh.html','Detailed station chronology'],['stanice-zbiroh-cs.html','Historie stanice · česky'],['stanice-zbiroh-de.html','Bahnhofsgeschichte · Deutsch'],['hotel-borek.html','Hotel Borek'],['hotel-borek-interior-postcard.html','Hotel interior postcard'],['hotel-borek-postcard-text.html','Postcard text and dating'],['oak-tree.html','The oak tree'],['borek-airfield.html','Borek Airfield']],
     industry:[['factory-catalogue.html','Factory catalogue'],['brandeis-eisenschimmel-factory-images.html','Factory images'],['borek-silo-documents.html','Silo documents'],['borek-aurich-silo-research.html','Aurich and the silo question'],['working-hypotheses.html','Working hypotheses'],['strousberg.html','Strousberg overview'],['strousberg-zbiroh-purchase.html','The 1868 Zbiroh purchase'],['strousberg-zbirow-report.html','1875 industrial report'],['strousberg-memoir-summary.html','Memoir summary'],['strousberg-reputation.html','Reputation and evidence'],['economist-strousberg-1875.html','The Economist, 1875'],['property-rights.html','Property-rights research']],
     people:[['emil-brandeis.html','Emil Brandeis'],['franz-eisenschimmel.html','Franz Eisenschimmel — engineer'],['valtr-eisenschimmel.html','Dr Valtr Eisenschimmel — chemist'],['people.html','Josef Švejkovský — Kařez tool manufacturer'],['emil-goldschmied.html','Emil and Ludwig Goldschmied'],['goldschmied-borek-1879.html','Goldschmied and Borek, 1879'],['strousberg.html','Bethel Henry Strousberg']],
-    timelines:[['stanice-zbiroh.html','Station timeline'],['borek-factory.html','Borek factory timeline'],['hotel-borek.html','Hotel Borek timeline']],
+    timelines:[['connected-timeline.html','Master timeline'],['stanice-zbiroh.html','Zbiroh Station'],['hotel-borek.html','Hotel Borek'],['borek-factory.html','Borek Factory']],
     sources:[['source-catalogue.html','Source catalogue'],['discovery-trail.html','Discovery trail'],['research-register.html','Page-by-page research register'],['people-and-organisations.html','People and organisations'],['archive-guide.html','Archive guide'],['research-index.json','Machine-readable research index'],['METHODOLOGY.md','Research methodology'],['research/TIMELINE.md','Working timeline'],['research/BOREK_INDUSTRIAL_HISTORY.md','Industrial research notes'],['research/HOTEL-BOREK.md','Hotel Borek notes']]
   };
   const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
@@ -201,7 +201,7 @@
       ['Biographical result','valtr-eisenschimmel.html','The Valtr Eisenschimmel profile is a documented outcome of checking an initially inaccurate lead.']
     ]
   };
-  const label={overview:'Overview',station:'Station & landscape',industry:'Industry & property',people:'People',sources:'Sources & method',timelines:'Object timelines'};
+  const label={overview:'Overview',station:'Station & landscape',industry:'Industry & property',people:'People',sources:'Sources & method',timelines:'Timelines'};
   const menu=(key)=>`<details><summary>${label[key]}</summary><div class="archive-menu">${pages[key].map(([href,text])=>`<a href="${href}"${current===href.toLowerCase()?' aria-current="page"':''}>${text}</a>`).join('')}</div></details>`;
   const old=document.querySelector('.entitybar,.bar');
   const nav=document.createElement('nav');nav.className='archive-nav';nav.setAttribute('aria-label','Archive navigation');
