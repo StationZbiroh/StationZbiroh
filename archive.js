@@ -1,7 +1,7 @@
 (function(){
   const pages={
     overview:[['index.html','Start here'],['why-this-site.html','Why is this site here?'],['connected-timeline.html','Main timeline']],
-    station:[['stanice-zbiroh.html','Detailed station chronology'],['stanice-zbiroh-cs.html','Historie stanice · česky'],['stanice-zbiroh-de.html','Bahnhofsgeschichte · Deutsch'],['hotel-borek.html','Hotel Borek'],['hotel-borek-interior-postcard.html','Hotel interior postcard'],['hotel-borek-postcard-text.html','Postcard text and dating'],['oak-tree.html','The oak tree'],['borek-airfield.html','Borek Airfield']],
+    station:[['stanice-zbiroh.html','Detailed station chronology'],['stanice-zbiroh-cs.html','Historie stanice · česky'],['stanice-zbiroh-de.html','Bahnhofsgeschichte · Deutsch'],['hotel-borek.html','Hotel Borek'],['hotel-borek-interior-postcard.html','Hotel interior postcard'],['hotel-borek-postcard-text.html','Postcard text and dating'],['oak-tree.html','The oak tree'],['borek-airfield.html','Borek Airfield'],['d5-motorway-1995.html','D5 Motorway 1995']],
     industry:[['factory-catalogue.html','Factory catalogue'],['brandeis-eisenschimmel-factory-images.html','Factory images'],['borek-silo-documents.html','Silo documents'],['borek-aurich-silo-research.html','Aurich and the silo question'],['working-hypotheses.html','Working hypotheses'],['strousberg.html','Strousberg overview'],['strousberg-zbiroh-purchase.html','The 1868 Zbiroh purchase'],['strousberg-zbirow-report.html','1875 industrial report'],['strousberg-memoir-summary.html','Memoir summary'],['strousberg-reputation.html','Reputation and evidence'],['economist-strousberg-1875.html','The Economist, 1875'],['property-rights.html','Property-rights research']],
     people:[['emil-brandeis.html','Emil Brandeis'],['franz-eisenschimmel.html','Franz Eisenschimmel — engineer'],['valtr-eisenschimmel.html','Dr Valtr Eisenschimmel — chemist'],['people.html','Josef Švejkovský — Kařez tool manufacturer'],['emil-goldschmied.html','Emil and Ludwig Goldschmied'],['goldschmied-borek-1879.html','Goldschmied and Borek, 1879'],['strousberg.html','Bethel Henry Strousberg']],
     timelines:[['connected-timeline.html','Master timeline'],['stanice-zbiroh.html','Zbiroh Station'],['hotel-borek.html','Hotel Borek'],['borek-factory.html','Borek Factory']],
@@ -43,7 +43,8 @@
     'property-rights.html':['Industry & property','Research hypothesis'],
     'emil-brandeis.html':['People','Identity research'],
     'emil-goldschmied.html':['People','Identity research in progress'],
-    'goldschmied-borek-1879.html':['People','Cadastral and identity evidence']
+    'goldschmied-borek-1879.html':['People','Cadastral and identity evidence'],
+    'd5-motorway-1995.html':['Station & landscape','Road infrastructure · 1995']
   };
   const connections={
     'index.html':[
