@@ -264,3 +264,6 @@
     main.querySelectorAll('.timeline article').forEach(article=>{const date=article.querySelector('.date')?.textContent.trim();const links=timelineLinks[date];if(!links)return;const p=document.createElement('p');p.className='timeline-links';p.innerHTML='<strong>Related archive branches:</strong> '+links.map(([href,label])=>`<a href="${href}">${label}</a>`).join(' · ');article.appendChild(p)});
   }
 })();
+
+// Load page-specific listening summaries after the archive enhancements.
+{ const audioScript = document.createElement("script"); audioScript.src = "audio-narratives.js"; document.body.appendChild(audioScript); }
