@@ -266,5 +266,4 @@
   }
 })();
 
-// Load page-specific listening summaries after the archive enhancements.
-{ const audioScript = document.createElement("script"); audioScript.src = "audio-narratives.js"; document.body.appendChild(audioScript); }
+
